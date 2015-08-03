@@ -120,4 +120,12 @@ rivets.formatters.image = function(base64) {
 
 rivets.formatters.format = function(data, string) {
 	return string.replace('$0', data);
-}
+};
+
+$(function() {
+	var templates = $('script[type="text/template"]');
+	for (var i = 0; i < templates.length; i++) {
+		var t = $(templates[i]);
+		t.before(t.text()).remove();
+	}
+});

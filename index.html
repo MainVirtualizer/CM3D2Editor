@@ -128,6 +128,7 @@
 	</div>
 	<div id="maids" class="container">
 		<ul class="collapsible" data-collapsible="accordion">
+		<script type="text/template">
 			<li rv-each-maid="chrMgr.stockMaid">
 				<div class="collapsible-header">
 					<img class="maid-thumbnail" rv-src="maid.misc.texIcon|image"></img>
@@ -147,13 +148,22 @@
 							<input type="checkbox" checked="checked" rv-checked="maid.param.isFirstNameCall" rv-id="maid.param.guid|format '$0-isFirstNameCall'"/>
 							<label rv-for="maid.param.guid|format '$0-isFirstNameCall'">用名称呼</label>
 						</div>
-						 <div class="input-field col s12">
+						<div class="input-field col s3">
+							<select rv-value="maid.param.contractType|int32">
+								<option value="0">养成中</option>
+								<option value="1">自由女仆</option>
+								<option value="2">专属女仆</option>
+							</select>
+							<label>契约类型</label>
+						</div>
+						<div class="input-field col s12">
 							<textarea class="materialize-textarea" rv-value="maid.param.profile"></textarea>
 							<label>档案</label>
 						</div>
 					</div>
 				</div>
 			</li>
+		</script>
 		</ul>
 	</div>
 	<div style="height: 500px;"></div>
