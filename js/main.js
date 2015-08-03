@@ -1,5 +1,8 @@
 'use strict';
 
+var openedFileName;
+var activeBind;
+
 // Setup Material select
 $(document).ready(function() {
 	$('select').material_select();
@@ -10,9 +13,14 @@ $('#button-upload').click(function() {
 	fileSelector.change(function() {
 		var files = fileSelector[0].files;
 		if (files.length) {
+			openedFileName = files[0].name;
 			var reader = new FileReader();
 			reader.onload = function() {
-				loadFile(reader.result);
+				try {
+					loadXML($.parseXML(reader.result));
+				} catch (e) {
+					alert(e);
+				}
 			}
 			reader.readAsText(files[0]);
 		}
@@ -21,18 +29,15 @@ $('#button-upload').click(function() {
 });
 
 $('#button-download').click(function() {
-	saveTextAs(new XMLSerializer().serializeToString(json2xml('Osave', activeModel)), 'SaveData099.xml');
+	if (!activeModel) {
+		alert('你还没有加载任何文件');
+		return;
+	}
+	saveTextAs(new XMLSerializer().serializeToString(json2xml('Osave', activeModel)), openedFileName);
 });
 
-function loadFile(xml) {
-	loadXML($($.parseXML(xml)));
-}
-
 var activeXMLDocument;
-var activeOSave;
 var activeModel;
-
-var object;
 
 var tagMatcher = /^[A-Z_]+/;
 
@@ -92,7 +97,7 @@ function createModelFromXML(xml) {
 }
 
 function json2xml(name, object) {
-	var ret = activeXMLDocument[0].createElement(name);
+	var ret = activeXMLDocument.createElement(name);
 	var names = Object.getOwnPropertyNames(object);
 	for (var i = 0; i < names.length; i++) {
 		var tagName = names[i];
@@ -121,7 +126,7 @@ function json2xml(name, object) {
 				}
 				break;
 			case "B":
-				var node = activeXMLDocument[0].createElement(tagName);
+				var node = activeXMLDocument.createElement(tagName);
 				node.setAttribute('val', value);
 				ret.appendChild(node);
 				break;
@@ -134,10 +139,20 @@ function json2xml(name, object) {
 
 function loadXML(xml) {
 	activeXMLDocument = xml;
-	activeOSave = extractSave(xml);
-	activeModel = createModelFromXML(activeOSave[0]);
 
-	rivets.bind($('#profile'), activeModel);
+	var root = $(xml).children();
+	if (root.length !== 1 || root[0].tagName !== 'Osave') {
+		throw new Error('不是有效的CM3D2存档XML');
+	}
+	activeModel = createModelFromXML(root[0]);
+
+	if (activeModel.Iversion !== 101) {
+		alert((version / 100) + '版本的存档修改没有经过测试 可能会有Bug');
+	}
+
+	if (activeBind)
+		activeBind.unbind();
+	activeBind = rivets.bind($('#profile'), activeModel);
 
 	$("input").change();
 	$('select').material_select('update');
@@ -148,11 +163,11 @@ function loadXML(xml) {
 function extractSave(xml) {
 	var root = xml.children();
 	if (root.length !== 1 || root[0].tagName !== 'Osave') {
-		throw new Error('File is not valid CM3D2 SaveData');
+		throw new Error('不是有效的CM3D2存档XML');
 	}
 	var version = parseInt(root.attr('Iversion')) / 100;
 	if (version !== 1.01) {
-		alert('Version ' + version + ' support might be broken');
+		alert(version + '版本的存档修改没有经过测试 可能会有Bug');
 	}
 	return root;
 }
