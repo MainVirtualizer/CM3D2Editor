@@ -29,7 +29,7 @@
 	</nav>
 	<ul class="tabs">
 	<li class="tab"><a href="#profile">玩家信息</a></li>
-	<li class="tab disabled"><a href="#maids">Maid</a></li>
+	<li class="tab"><a class="active" href="#maids">Maid</a></li>
 	</ul>
 	<div id="profile" class="container">
 		<h4>预览</h4>
@@ -125,6 +125,36 @@
 			<label>历史最高评级</label>
 			</div>
 		</div>
+	</div>
+	<div id="maid" class="container">
+		<ul class="collapsible" data-collapsible="accordion">
+			<li rv-each-maid="chrMgr.stockMaid">
+				<div class="collapsible-header">
+					<img class="maid-thumbnail" rv-src="maid.misc.texIcon|image"></img>
+					<span rv-text="maid.param.guid"></span>
+				</div>
+				<div class="collapsible-body container">
+					<div class="row">
+						<div class="input-field col s3">
+							<input type="text" rv-value="maid.param.lastName"/>
+							<label>姓</label>
+						</div>
+						<div class="input-field col s3">
+							<input type="text" rv-value="maid.param.firstName"/>
+							<label>名</label>
+						</div>
+						<div class="input-field col s3">
+							<input type="checkbox" checked="checked" rv-checked="maid.param.isFirstNameCall" rv-id="maid.param.guid|format '$0-isFirstNameCall'"/>
+							<label rv-for="maid.param.guid|format '$0-isFirstNameCall'">用名称呼</label>
+						</div>
+						 <div class="input-field col s12">
+							<textarea class="materialize-textarea" rv-value="maid.param.profile"></textarea>
+							<label>档案</label>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
 	</div>
 	<div style="height: 500px;"></div>
 	<script src="js/main.js"></script>

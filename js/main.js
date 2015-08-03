@@ -2,6 +2,7 @@
 
 var openedFileName;
 var activeBind;
+var activeModel;
 
 // Setup Material select
 $(document).ready(function() {
@@ -72,19 +73,18 @@ $('#button-savejson').click(function() {
 	saveTextAs(JSON.stringify(activeModel, null, 2), openedFileName + '.json');
 });
 
-var activeXMLDocument;
-var activeModel;
-
 function loadJSON(model) {
 	activeModel = model;
 
 	if (activeBind)
 		activeBind.unbind();
-	activeBind = rivets.bind($('#profile'), activeModel);
+	activeBind = rivets.bind($('body'), activeModel);
 
 	$("input").change();
+	$("textarea").change().keydown();
 	$('select').material_select('update');
 	$("select").closest('.input-field').children('span.caret').remove();
+	$('.collapsible').collapsible();
 }
 
 rivets.formatters.int32 = {
@@ -109,3 +109,11 @@ rivets.formatters.int64 = {
 		return [long.low_, long.high_];
 	}
 };
+
+rivets.formatters.image = function(base64) {
+	return 'data:image/png;base64,' + base64;
+}
+
+rivets.formatters.format = function(data, string) {
+	return string.replace('$0', data);
+}

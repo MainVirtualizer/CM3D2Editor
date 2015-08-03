@@ -4,3 +4,8 @@
 	user-select: none;
 	cursor: default;
 }
+
+.maid-thumbnail {
+	height: 100%;
+	vertical-align: middle; 
+}
