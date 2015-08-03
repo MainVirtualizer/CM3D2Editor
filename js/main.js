@@ -8,11 +8,23 @@ $(document).ready(function() {
 	$('select').material_select();
 });
 
-$('#button-upload').click(function() {
+function openOpenDialog(callback, accept) {
 	var fileSelector = $('<input type="file">');
+	if (accept) fileSelector.attr('accept', accept);
 	fileSelector.change(function() {
 		var files = fileSelector[0].files;
 		if (files.length) {
+			callback(files[0]);
+		} else {
+			callback(null);
+		}
+	});
+	fileSelector.click();
+}
+
+$('#button-upload').click(function() {
+	openOpenDialog(function(file) {
+		if (file) {
 			var reader = new FileReader();
 			reader.onload = function() {
 				try {
@@ -20,19 +32,16 @@ $('#button-upload').click(function() {
 				} catch (e) {
 					alert('不是有效的CM3D2存档');
 				}
-				openedFileName = files[0].name.replace(/\.[^.]+$/, '');
+				openedFileName = file.name.replace(/\.[^.]+$/, '');
 			}
-			reader.readAsArrayBuffer(files[0]);
+			reader.readAsArrayBuffer(file);
 		}
-	});
-	fileSelector.click();
+	}, '.save');
 });
 
 $('#button-loadjson').click(function() {
-	var fileSelector = $('<input type="file">');
-	fileSelector.change(function() {
-		var files = fileSelector[0].files;
-		if (files.length) {
+	openOpenDialog(function(file) {
+		if (file) {
 			var reader = new FileReader();
 			reader.onload = function() {
 				try {
@@ -40,12 +49,11 @@ $('#button-loadjson').click(function() {
 				} catch (e) {
 					alert('不是有效的JSON');
 				}
-				openedFileName = files[0].name.replace(/\.[^.]+$/, '');
+				openedFileName = file.name.replace(/\.[^.]+$/, '');
 			}
-			reader.readAsText(files[0]);
+			reader.readAsText(file);
 		}
-	});
-	fileSelector.click();
+	}, '.json');
 });
 
 $('#button-download').click(function() {
