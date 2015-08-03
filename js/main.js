@@ -74,11 +74,15 @@ $('#button-savejson').click(function() {
 });
 
 function loadJSON(model) {
-	activeModel = model;
-
-	if (activeBind)
-		activeBind.unbind();
-	activeBind = rivets.bind($('body'), activeModel);
+	if (activeModel) {
+		activeModel.version = model.version;
+		activeModel.header = model.header;
+		activeModel.chrMgr = model.chrMgr;
+		activeModel.script = model.script;
+	} else {
+		activeModel = model;
+		activeBind = rivets.bind($('body'), activeModel);
+	}
 
 	$("input").change();
 	$("textarea").change().keydown();
