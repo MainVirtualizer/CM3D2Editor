@@ -114,6 +114,27 @@ rivets.formatters.int64 = {
 	}
 };
 
+rivets.formatters.studyRate = {
+	read: function(value) {
+		return value / 10;
+	},
+	publish: function(value) {
+		return Math.round(parseFloat(value) * 10);
+	}
+};
+
+rivets.formatters._9999 = {
+	read: function(value) {
+		return value;
+	},
+	publish: function(value) {
+		value = parseInt(value);
+		if (value < 0) return 0;
+		if (value > 9999) return 9999;
+		return value;
+	}
+};
+
 rivets.formatters.image = function(base64) {
 	return 'data:image/png;base64,' + base64;
 }
