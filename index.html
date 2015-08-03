@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>CM3D2 XML Editor</title>
+	<title>CM3D2 Editor</title>
 
 	<link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
 	<link type="text/css" rel="stylesheet" href='css/main.css'/>
@@ -12,6 +12,8 @@
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/rivets.js"></script>
 	<script type="text/javascript" src="js/FileSaver.js"></script>
+	<script type="text/javascript" src="js/cm3d2.js"></script>
+	<script type="text/javascript" src="js/long.js"></script>
 </head>
 <body>
 	<nav>
@@ -20,6 +22,8 @@
 			<ul class="left hide-on-med-and-down">
 			<li><a id="button-upload">载入</a></li>
 			<li><a id="button-download">保存</a></li>
+			<li><a id="button-loadjson">载入JSON</a></li>
+			<li><a id="button-savejson">保存JSON</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -31,73 +35,77 @@
 		<h4>预览</h4>
 		<div class="row">
 			<div class="input-field col s3">
-			<input id="header-save_time" type="text" rv-value="Oheader.Ssave_time"/>
-			<label for="header-save_time">存档时间</label>
+			<input type="text" rv-value="header.saveTime"/>
+			<label>存档时间</label>
 			</div>
 			<div class="input-field col s3">
-			<input id="header-player_name" type="text" rv-value="Oheader.Splayer_name"/>
-			<label for="header-player_name">玩家名</label>
+			<input type="text" rv-value="header.playerName"/>
+			<label>玩家名</label>
 			</div>
 			<div class="input-field col s3">
-			<input id="header_game_days" type="text" rv-value="Oheader.Igame_day|I"/>
-			<label for="header_game_days">游戏天数</label>
+			<input type="text" rv-value="header.gameDay|int32"/>
+			<label>游戏天数</label>
 			</div>
 			<div class="input-field col s3">
-			<input id="header_maid_num" type="text" rv-value="Oheader.Imaid_num|I"/>
-			<label for="header_maid_num">女仆个数</label>
+			<input type="text" rv-value="header.maidNum|int32"/>
+			<label>女仆个数</label>
+			</div>
+			<div class="input-field col s12">
+			<input type="text" rv-value="header.comment"/>
+			<label>注释</label>
 			</div>
 		</div>
 		<h4>玩家信息</h4>
 		<div class="row">
 				<div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Splayer_name"/>
+			<input type="text" rv-value="chrMgr.playerParam.playerName"/>
 			<label>玩家名</label>
 			</div>
 			<div class="input-field col s3">
-				<select rv-value="Ochar_manager.Oplayer_param.Ostatus.Iscenario_phase|I">
+				<select rv-value="chrMgr.playerParam.scenarioPhase|int32">
 					<option value="1">还债阶段</option>
 					<option value="2">主要阶段</option>
 				</select>
 				<label>游戏阶段</label>
 				</div>
 				<div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Iphase_days|I"/>
+			<input type="text" rv-value="chrMgr.playerParam.phaseDays|int32"/>
 			<label>该阶段经过天数</label>
 			</div>
 			<div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Idays|I"/>
+			<input type="text" rv-value="chrMgr.playerParam.days|int32"/>
 			<label>游戏天数</label>
 			</div>
 			<div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Ishop_use_money|I"/>
+			<input type="text" rv-value="chrMgr.playerParam.shopUseMoney|int64"/>
 			<label>已消费CR</label>
 			</div>
 			<div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Imoney|I"/>
+			<input type="text" rv-value="chrMgr.playerParam.money|int64"/>
 			<label>当前CR</label>
 			</div>
 			 <div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Iinit_salon_loan|I"/>
+			<input type="text" rv-value="chrMgr.playerParam.initSalonLoan|int64"/>
 			<label >初始贷款额</label>
 			</div>
 			<div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Isalon_loan|I"/>
+			<input type="text" rv-value="chrMgr.playerParam.salonLoan|int64"/>
 			<label >当前贷款额</label>
 			</div>
 			<div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Isalon_clean|I"/>
+			<input type="text" rv-value="chrMgr.playerParam.salonClean|int32"/>
 			<label>整洁度</label>
 			</div>
 			<div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Isalon_beautiful|I"/>
+			<input type="text" rv-value="chrMgr.playerParam.salonBeautiful|int32"/>
 			<label>华丽度</label>
 			</div>
 			<div class="input-field col s3">
-			<input type="text" rv-value="Ochar_manager.Oplayer_param.Ostatus.Isalon_evaluation|I"/>
+			<input type="text" rv-value="chrMgr.playerParam.salonEvaluation|int32"/>
 			<label>总评价</label>
 			</div>
 			<div class="input-field col s3">
-			<select rv-value="Ochar_manager.Oplayer_param.Ostatus.Icurrent_salon_grade|I">
+			<select rv-value="chrMgr.playerParam.currentSalonGrade|int32">
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
@@ -107,7 +115,7 @@
 			<label>当前评级</label>
 			</div>
 			<div class="input-field col s3">
-			<select rv-value="Ochar_manager.Oplayer_param.Ostatus.Ibest_salon_grade|I">
+			<select rv-value="chrMgr.playerParam.bestSalonGrade|int32">
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>

@@ -13,14 +13,34 @@ $('#button-upload').click(function() {
 	fileSelector.change(function() {
 		var files = fileSelector[0].files;
 		if (files.length) {
-			openedFileName = files[0].name;
 			var reader = new FileReader();
 			reader.onload = function() {
 				try {
-					loadXML($.parseXML(reader.result));
+					loadJSON(parseSaveData(reader.result));
 				} catch (e) {
-					alert(e);
+					alert('不是有效的CM3D2存档');
 				}
+				openedFileName = files[0].name.replace(/\.[^.]+$/, '');
+			}
+			reader.readAsArrayBuffer(files[0]);
+		}
+	});
+	fileSelector.click();
+});
+
+$('#button-loadjson').click(function() {
+	var fileSelector = $('<input type="file">');
+	fileSelector.change(function() {
+		var files = fileSelector[0].files;
+		if (files.length) {
+			var reader = new FileReader();
+			reader.onload = function() {
+				try {
+					loadJSON(JSON.parse(reader.result));
+				} catch (e) {
+					alert('不是有效的JSON');
+				}
+				openedFileName = files[0].name.replace(/\.[^.]+$/, '');
 			}
 			reader.readAsText(files[0]);
 		}
@@ -33,122 +53,22 @@ $('#button-download').click(function() {
 		alert('你还没有加载任何文件');
 		return;
 	}
-	saveTextAs(new XMLSerializer().serializeToString(json2xml('Osave', activeModel)), openedFileName);
+	saveAs(new Blob([new Uint8Array(writeSaveData(activeModel))]), openedFileName + '.save');
+});
+
+$('#button-savejson').click(function() {
+	if (!activeModel) {
+		alert('你还没有加载任何文件');
+		return;
+	}
+	saveTextAs(JSON.stringify(activeModel, null, 2), openedFileName + '.json');
 });
 
 var activeXMLDocument;
 var activeModel;
 
-var tagMatcher = /^[A-Z_]+/;
-
-function createModelFromXML(xml) {
-	var ret = {};
-	var attributes = xml.attributes;
-	for (var i = 0; i < attributes.length; i++) {
-		var tagName = attributes[i].name;
-		var tagType = tagName.match(tagMatcher)[0];
-		var value = attributes[i].value;
-		switch (tagType) {
-			case "I":
-				ret[tagName] = parseInt(value);
-				break;
-			case "LI":
-				ret[tagName] = value.split(" ").map(function(item) {
-					return parseInt(item);
-				});
-				break;
-			case "L_":
-				ret[tagName] = [];
-				break;
-			case "S":
-				ret[tagName] = value;
-				break;
-			case "F":
-				ret[tagName] = parseFloat(value);
-				break;
-			case "A":
-				ret[tagName] = value; //TODO
-				break;
-			default:
-				throw new Error("TagType " + tagType + " is not recognized");
-		}
-	}
-	var children = xml.children;
-	for (var i = 0; i < children.length; i++) {
-		var tagName = children[i].tagName;
-		var tagType = tagName.match(tagMatcher)[0];
-		switch (tagType) {
-			case "O":
-				ret[tagName] = createModelFromXML(children[i]);
-				break;
-			case "LO":
-				if (!ret[tagName])
-					ret[tagName] = [];
-				ret[tagName].push(createModelFromXML(children[i]))
-				break;
-			case "B":
-				ret[tagName] = children[i].getAttribute("val").replace(' ', '');
-				break;
-			default:
-				throw new Error("TagType " + tagType + " is not recognized");
-		}
-	}
-	return ret;
-}
-
-function json2xml(name, object) {
-	var ret = activeXMLDocument.createElement(name);
-	var names = Object.getOwnPropertyNames(object);
-	for (var i = 0; i < names.length; i++) {
-		var tagName = names[i];
-		var tagType = tagName.match(tagMatcher)[0];
-		if (tagType === '_') continue;
-		var value = object[tagName];
-		switch (tagType) {
-			case 'I':
-			case 'F':
-			case 'S':
-			case 'A':
-				ret.setAttribute(tagName, value);
-				break;
-			case 'L_':
-				ret.setAttribute(tagName, '');
-				break;
-			case 'LI':
-				ret.setAttribute(tagName, value.join(' '));
-				break;
-			case "O":
-				ret.appendChild(json2xml(tagName, value));
-				break;
-			case "LO":
-				for (var j = 0; j < value.length; j++) {
-					ret.appendChild(json2xml(tagName, value[j]));
-				}
-				break;
-			case "B":
-				var node = activeXMLDocument.createElement(tagName);
-				node.setAttribute('val', value);
-				ret.appendChild(node);
-				break;
-			default:
-				throw new Error("TagType " + tagType + " is not recognized");
-		}
-	}
-	return ret;
-}
-
-function loadXML(xml) {
-	activeXMLDocument = xml;
-
-	var root = $(xml).children();
-	if (root.length !== 1 || root[0].tagName !== 'Osave') {
-		throw new Error('不是有效的CM3D2存档XML');
-	}
-	activeModel = createModelFromXML(root[0]);
-
-	if (activeModel.Iversion !== 101) {
-		alert((version / 100) + '版本的存档修改没有经过测试 可能会有Bug');
-	}
+function loadJSON(model) {
+	activeModel = model;
 
 	if (activeBind)
 		activeBind.unbind();
@@ -159,24 +79,25 @@ function loadXML(xml) {
 	$("select").closest('.input-field').children('span.caret').remove();
 }
 
-// Perform a simple validation to check if xml is a CM3D2 SaveData
-function extractSave(xml) {
-	var root = xml.children();
-	if (root.length !== 1 || root[0].tagName !== 'Osave') {
-		throw new Error('不是有效的CM3D2存档XML');
-	}
-	var version = parseInt(root.attr('Iversion')) / 100;
-	if (version !== 1.01) {
-		alert(version + '版本的存档修改没有经过测试 可能会有Bug');
-	}
-	return root;
-}
-
-rivets.formatters.I = {
+rivets.formatters.int32 = {
 	read: function(value) {
 		return value;
 	},
 	publish: function(value) {
 		return parseInt(value);
+	}
+};
+
+rivets.formatters.int64 = {
+	read: function(value) {
+		return new Long(value[0], value[1]).toString();
+	},
+	publish: function(value) {
+		try {
+			var long = Long.fromString(value);
+		} catch (e) {
+			return [0, 0];
+		}
+		return [long.low_, long.high_];
 	}
 };
