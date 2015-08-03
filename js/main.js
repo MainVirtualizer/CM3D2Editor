@@ -91,6 +91,13 @@ function loadJSON(model) {
 	$('.collapsible').collapsible();
 }
 
+function limitNum(value, min, max) {
+	value = parseInt(value) || 0;
+	if (value < min) return min;
+	if (value > max) return max;
+	return value;
+}
+
 rivets.formatters.int32 = {
 	read: function(value) {
 		return value;
@@ -119,7 +126,8 @@ rivets.formatters.studyRate = {
 		return value / 10;
 	},
 	publish: function(value) {
-		return Math.round(parseFloat(value) * 10);
+		value = parseFloat(value) || 0;
+		return Math.round(value * 10);
 	}
 };
 
@@ -128,10 +136,7 @@ rivets.formatters._9999 = {
 		return value;
 	},
 	publish: function(value) {
-		value = parseInt(value);
-		if (value < 0) return 0;
-		if (value > 9999) return 9999;
-		return value;
+		return limitNum(value, 0, 9999);
 	}
 };
 
