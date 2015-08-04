@@ -41,7 +41,7 @@ $('#button-upload').click(function() {
 				try {
 					loadJSON(parseSaveData(reader.result));
 				} catch (e) {
-					alert('不是有效的CM3D2存档');
+					alert('不是有效的CM3D2存档 ' + e.message);
 				}
 				openedFileName = file.name.replace(/\.[^.]+$/, '');
 			}
