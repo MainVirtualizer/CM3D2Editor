@@ -9,7 +9,11 @@ var i18n = {
 	createurl: "创建链接",
 	invalidsave: "不是有效的CM3D2存档",
 	invalidjson: "不是有效的JSON",
-	nothingloaded: "你还没有加载任何文件"
+	nothingloaded: "你还没有加载任何文件",
+
+	bodyEditor: "身体编辑器",
+	pleaseSelect: "请选择"
+
 };
 
 function updateMaterialSelect(obj) {

@@ -18,7 +18,7 @@
 <body>
 	<nav>
 		<div class="nav-wrapper">
-			<a class="brand-logo right hide-on-med-and-down">CM3D2 Editor v0.0.2</a>
+			<a class="brand-logo right hide-on-med-and-down">CM3D2 Editor v0.0.3</a>
 			<ul class="left">
 			<li><a id="button-upload">载入</a></li>
 			<li><a id="button-download">保存</a></li>
@@ -31,10 +31,10 @@
 
 	<div id="bodyEditor" class="modal">
 		<div class="modal-content">
-			<h4>身体编辑器</h4>
+			<h4 i18n-text="bodyEditor"></h4>
 			<div class="input-field">
 				<select id="bodyEditor_selector" onchange="bodyEditor.changeProperty(this.value)" class="browser-default">
-					<option value="" disabled selected>请选择</option>
+					<option value="" disabled selected i18n-text="pleaseSelect"></option>
 					<optgroup label="头">
 						<option value="EyeScl">眼睛大小</option>
 						<option value="EyePosX">眼睛横向位置</option>
@@ -81,7 +81,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<a class="modal-action modal-close btn-flat ">关闭</a>
+			<a class="modal-action modal-close btn-flat">关闭</a>
 		</div>
 	</div>
 
