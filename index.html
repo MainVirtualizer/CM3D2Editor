@@ -8,7 +8,7 @@
 	<link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
 	<link type="text/css" rel="stylesheet" href='css/main.css'/>
 
-	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/rivets.js"></script>
 	<script type="text/javascript" src="js/FileSaver.js"></script>
@@ -24,10 +24,67 @@
 			<li><a id="button-download">保存</a></li>
 			<li><a id="button-loadjson">载入JSON</a></li>
 			<li><a id="button-savejson">保存JSON</a></li>
-			<li><a id="button-createurl">创建链接</a></li>
+			<li><a id="button-createurl" i18n-text="createurl"></a></li>
 			</ul>
 		</div>
 	</nav>
+
+	<div id="bodyEditor" class="modal">
+		<div class="modal-content">
+			<h4>身体编辑器</h4>
+			<div class="input-field">
+				<select id="bodyEditor_selector" onchange="bodyEditor.changeProperty(this.value)" class="browser-default">
+					<option value="" disabled selected>请选择</option>
+					<optgroup label="头">
+						<option value="EyeScl">眼睛大小</option>
+						<option value="EyePosX">眼睛横向位置</option>
+						<option value="EyePosY">眼睛纵向位置</option>
+						<option value="HeadX">头宽度</option>
+						<option value="HeadY">头高度</option>
+					</optgroup>
+					<optgroup label="全身">
+						<option value="DouPer">腿长</option>
+						<option value="sintyou">身长</option>
+					</optgroup>
+					<optgroup label="胸">
+						<option value="MuneL">胸的大小</option>
+						<option value="MuneTare">胸的下垂</option>
+						<option value="MuneUpDown">胸的上下</option>
+						<option value="MuneYori">胸的距离</option>
+					</optgroup>
+					<optgroup label="上半身">
+						<option value="west">腰粗细</option>
+						<option value="Hara">腹部大小</option>
+						<option value="kata">肩幅</option>
+						<option value="ArmL">腕粗细</option>
+						<option value="UdeScl">腕长</option>
+						<option value="KubiScl">颈长</option>
+					</optgroup>
+					<optgroup label="下半身">
+						<option value="koshi">臀部</option>
+						<option value="RegFat">腿部粗细</option>
+						<option value="RegMeet">腿部肌肉大小</option>
+					</optgroup>
+				</select>
+			</div>
+			<div class="input-field">
+				 <input type="text" bind-value="bodyEditor.property.min|int32"/>
+				 <label>最小值</label>
+			</div>
+			<div class="input-field">
+				 <input type="text" bind-value="bodyEditor.property.max|int32"/>
+				 <label>最大值</label>
+			</div>
+			<div class="input-field">
+				 <input type="text" bind-value="bodyEditor.property.value|int32"/>
+				 <label>当前值</label>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class="modal-action modal-close btn-flat ">关闭</a>
+		</div>
+	</div>
+
 	<ul class="tabs">
 	<li class="tab"><a href="#profile">玩家信息</a></li>
 	<li class="tab"><a class="active" href="#maids">Maid</a></li>
@@ -264,6 +321,9 @@
 						<div class="input-field col s12">
 							<textarea class="materialize-textarea" rv-value="maid.param.profile"></textarea>
 							<label>档案</label>
+						</div>
+						<div class="input-field col s12">
+							<a onclick="editBody(event.currentTarget.getAttribute('guid'))" rv-guid="maid.param.guid">编辑身体</a>
 						</div>
 					</div>
 				</div>

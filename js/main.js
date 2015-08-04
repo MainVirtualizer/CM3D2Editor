@@ -3,9 +3,35 @@
 var openedFileName;
 var activeBind;
 var activeModel;
+var bindings = {};
+
+var i18n = {
+	createurl: "创建链接",
+	invalidsave: "不是有效的CM3D2存档",
+	invalidjson: "不是有效的JSON",
+	nothingloaded: "你还没有加载任何文件"
+};
+
+function updateMaterialSelect(obj) {
+	obj.material_select('update');
+	obj.closest('.input-field').children('span.caret').remove();
+}
+
+function updateMaterialize() {
+	$("input").change();
+	$("textarea").change().keydown();
+	updateMaterialSelect($('select'));
+	$('.collapsible').collapsible();
+}
 
 // Setup Material select
 $(document).ready(function() {
+	rivets.bind($('body'), i18n, {
+		prefix: 'i18n'
+	});
+	rivets.bind($('body'), bindings, {
+		prefix: 'bind'
+	});
 	$('select').material_select();
 });
 
@@ -41,7 +67,7 @@ $('#button-upload').click(function() {
 				try {
 					loadJSON(parseSaveData(reader.result));
 				} catch (e) {
-					alert('不是有效的CM3D2存档 ' + e.message);
+					alert(i18n.invalidsave + ' ' + e.message);
 				}
 				openedFileName = file.name.replace(/\.[^.]+$/, '');
 			}
@@ -58,7 +84,7 @@ $('#button-loadjson').click(function() {
 				try {
 					loadJSON(JSON.parse(reader.result));
 				} catch (e) {
-					alert('不是有效的JSON');
+					alert(i18n.invalidjson);
 				}
 				openedFileName = file.name.replace(/\.[^.]+$/, '');
 			}
@@ -69,7 +95,7 @@ $('#button-loadjson').click(function() {
 
 $('#button-download').click(function() {
 	if (!activeModel) {
-		alert('你还没有加载任何文件');
+		alert(i18n.nothingloaded);
 		return;
 	}
 	saveAs(new Blob([new Uint8Array(writeSaveData(activeModel))]), openedFileName + '.save');
@@ -77,7 +103,7 @@ $('#button-download').click(function() {
 
 $('#button-savejson').click(function() {
 	if (!activeModel) {
-		alert('你还没有加载任何文件');
+		alert(i18n.nothingloaded);
 		return;
 	}
 	saveTextAs(JSON.stringify(activeModel, null, 2), openedFileName + '.json');
@@ -85,7 +111,7 @@ $('#button-savejson').click(function() {
 
 $('#button-createurl').click(function() {
 	if (!activeModel) {
-		alert('你还没有加载任何文件');
+		alert(i18n.nothingloaded);
 		return;
 	}
 	var newWindow = window.open();
@@ -103,11 +129,7 @@ function loadJSON(model) {
 		activeBind = rivets.bind($('body'), activeModel);
 	}
 
-	$("input").change();
-	$("textarea").change().keydown();
-	$('select').material_select('update');
-	$("select").closest('.input-field').children('span.caret').remove();
-	$('.collapsible').collapsible();
+	updateMaterialize();
 }
 
 function limitNum(value, min, max) {
@@ -122,7 +144,7 @@ rivets.formatters.int32 = {
 		return value;
 	},
 	publish: function(value) {
-		return parseInt(value);
+		return parseInt(value) || 0;
 	}
 };
 
@@ -174,3 +196,31 @@ $(function() {
 		t.before(t.text()).remove();
 	}
 });
+
+function getMaidByGUID(guid) {
+	var maids = activeModel.chrMgr.stockMaid;
+	for (var i = 0; i < maids.length; i++) {
+		if (maids[i].param.guid === guid) return maids[i];
+	}
+	return null;
+}
+
+function editBody(guid) {
+	bindings.maid = getMaidByGUID(guid);
+
+	$('#bodyEditor_selector').val('');
+	bindings.bodyEditor.property = null;
+
+	$('#bodyEditor').openModal();
+};
+
+bindings.bodyEditor = {
+	property: null
+};
+
+var bodyEditor = {
+	changeProperty: function(value) {
+		bindings.bodyEditor.property = bindings.maid.props[value];
+		updateMaterialize();
+	}
+};
