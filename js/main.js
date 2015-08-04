@@ -23,6 +23,16 @@ function openOpenDialog(callback, accept) {
 	fileSelector.click();
 }
 
+function createDataURL(data) {
+	var base64;
+	if (data instanceof Uint8Array) {
+		base64 = data.toBase64();
+	} else {
+		base64 = btoa(unescape(encodeURIComponent(data)));
+	}
+	return 'data:application/octet-stream;base64,' + base64;
+}
+
 $('#button-upload').click(function() {
 	openOpenDialog(function(file) {
 		if (file) {
@@ -71,6 +81,15 @@ $('#button-savejson').click(function() {
 		return;
 	}
 	saveTextAs(JSON.stringify(activeModel, null, 2), openedFileName + '.json');
+});
+
+$('#button-createurl').click(function() {
+	if (!activeModel) {
+		alert('你还没有加载任何文件');
+		return;
+	}
+	var newWindow = window.open();
+	newWindow.document.body.innerHTML = '如果安装了迅雷 请用右键另存为<br/><a download="' + openedFileName + '.save" href="' + createDataURL(writeSaveData(activeModel)) + '">CM3D2 Save文件格式</a><br/>' + '<a download="' + openedFileName + '.json" href="' + createDataURL(JSON.stringify(activeModel, null, 2)) + '">JSON文件格式</a>';
 });
 
 function loadJSON(model) {
