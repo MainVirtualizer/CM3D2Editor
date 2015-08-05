@@ -18,8 +18,6 @@ var i18n = {
 		sexual_throat: "性感带（喉）",
 		sexual_nipple: "性感带（乳头）",
 		sexual_curi: "性感带（私部）",
-		sexual_front: "性感带（前）",
-		sexual_back: "性感带（后）",
 	},
 
 	createurl: "创建链接",
