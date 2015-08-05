@@ -18,9 +18,11 @@
 <body>
 	<ul id="nav-utilities" class="dropdown-content">
 	  <li><a onclick="util.unlockBodyLimits()" i18n-text="util.unlockBodyLimits"></a></li>
-	  <li><a onclick="util.maidClassMax()" i18n-text="util.maidClassMax" bind-show="selectedTab|eval '$0===&quot;#maids&quot;'"></a></li>
-	  <li><a onclick="util.yotogiClassMax()" i18n-text="util.yotogiClassMax" bind-show="selectedTab|eval '$0===&quot;#maids&quot;'"></a></li>
-	  <li><a onclick="util.allSkills()" i18n-text="util.allSkills" bind-show="selectedTab|eval '$0===&quot;#maids&quot;'"></a></li>
+	  <li class="divider" bind-show="showMaidUtil"></li>
+	  <li><a onclick="util.maidClassMax()" i18n-text="util.maidClassMax" bind-show="showMaidUtil"></a></li>
+	  <li><a onclick="util.yotogiClassMax()" i18n-text="util.yotogiClassMax" bind-show="showMaidUtil"></a></li>
+	  <li><a onclick="util.allSkills()" i18n-text="util.allSkills" bind-show="showMaidUtil"></a></li>
+	  <li><a onclick="util.allWork()" i18n-text="util.allWork" bind-show="showMaidUtil"></a></li>
 	</ul>
 	<nav>
 		<div class="nav-wrapper">
@@ -94,8 +96,8 @@
 
 	<div id="saveEditor" style="display: none;">
 		<ul class="tabs">
-		<li class="tab"><a onclick="bindings.selectedTab='#profile'" class="active" href="#profile">玩家信息</a></li>
-		<li class="tab"><a onclick="bindings.selectedTab='#maids'" href="#maids">Maid</a></li>
+		<li class="tab"><a onclick="bindings.showMaidUtil=false" class="active" href="#profile">玩家信息</a></li>
+		<li class="tab"><a onclick="bindings.showMaidUtil=true" href="#maids">Maid</a></li>
 		</ul>
 		<div id="profile" class="container">
 			<h4>预览</h4>
@@ -283,11 +285,11 @@
 						<label>接待</label>
 					</div>
 					<div class="input-field col s3">
-						<input type="text" bind-value="maid.param.studyRate|studyRate"/>
+						<input type="text" bind-value="maid.param.studyRate|rate"/>
 						<label>习得率</label>
 					</div>
 					<div class="input-field col s3">
-						<input type="text" bind-value="maid.param.teachRate|studyRate"/>
+						<input type="text" bind-value="maid.param.teachRate|rate"/>
 						<label>指导</label>
 					</div>
 					<div class="input-field col s3">
@@ -325,6 +327,30 @@
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.othersPlayCount|int32"/>
 						<label>接客次数</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.sexual.mouth|rate"/>
+						<label i18n-text="game.sexual_mouth"></label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.sexual.throat|rate"/>
+						<label i18n-text="game.sexual_throat"></label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.sexual.nipple|rate"/>
+						<label i18n-text="game.sexual_nipple"></label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.sexual.curi|rate"/>
+						<label i18n-text="game.sexual_curi"></label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.sexual.front|rate"/>
+						<label i18n-text="game.sexual_front"></label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.sexual.back|rate"/>
+						<label i18n-text="game.sexual_back"></label>
 					</div>
 					<div class="input-field col s12">
 						<textarea class="materialize-textarea" bind-value="maid.param.profile"></textarea>

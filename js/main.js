@@ -2,10 +2,19 @@
 
 var openedFileName;
 var bindings = {
-	selectedTab: '#profile'
+	showMaidUtil: false
 };
 
 var i18n = {
+	game: {
+		sexual_mouth: "性感带（口）",
+		sexual_throat: "性感带（喉）",
+		sexual_nipple: "性感带（乳头）",
+		sexual_curi: "性感带（私部）",
+		sexual_front: "性感带（前）",
+		sexual_back: "性感带（后）",
+	},
+
 	createurl: "创建链接",
 	invalidsave: "不是有效的CM3D2存档",
 	invalidjson: "不是有效的JSON",
@@ -31,7 +40,9 @@ var i18n = {
 		yotogiClassMax: "当前女仆的夜伽称号升至满级",
 		yotogiClassMaxFinished: "当前女仆的夜伽称号已全部升至满级",
 		allSkills: "当前女仆全部技能满级",
-		allSkillsFinished: "当前女仆的技能已全部解锁并升至满级"
+		allSkillsFinished: "当前女仆的技能已全部解锁并升至满级",
+		allWork: "当前女仆全部工作满级",
+		allWorkFinished: "当前女仆的工作已升至满级"
 	}
 
 };
@@ -182,7 +193,7 @@ rivets.formatters.int64 = {
 	}
 };
 
-rivets.formatters.studyRate = {
+rivets.formatters.rate = {
 	read: function(value) {
 		return value / 10;
 	},
@@ -311,5 +322,23 @@ var util = {
 			}
 		}
 		Materialize.toast(i18n.util.allSkillsFinished, 4000);
+	},
+	allWork: function() {
+		var data = bindings.maid.param.workData;
+		var workIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 101, 1001, 1002];
+		for (var i = 0; i < workIndex.length; i++) {
+			var idx = workIndex[i];
+			if (data[idx]) {
+				data[idx].level = 3;
+				data[idx].playCount = 20;
+			} else {
+				data[idx] = {
+					id: idx,
+					level: 3,
+					playCount: 20
+				};
+			}
+		}
+		Materialize.toast(i18n.util.allWorkFinished, 4000);
 	}
 };

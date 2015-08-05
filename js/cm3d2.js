@@ -351,7 +351,7 @@ Uint8Array.fromBase64 = function(input) {
 			sexual: {
 				mouth: reader.readInt32(),
 				throat: reader.readInt32(),
-				nippple: reader.readInt32(),
+				nipple: reader.readInt32(),
 				front: reader.readInt32(),
 				back: reader.readInt32(),
 				curi: reader.readInt32()
@@ -745,7 +745,7 @@ Uint8Array.fromBase64 = function(input) {
 		writer.writeInt32(data.teachRate);
 		writer.writeInt32(data.sexual.mouth);
 		writer.writeInt32(data.sexual.throat);
-		writer.writeInt32(data.sexual.nippple);
+		writer.writeInt32(data.sexual.nipple);
 		writer.writeInt32(data.sexual.front);
 		writer.writeInt32(data.sexual.back);
 		writer.writeInt32(data.sexual.curi);
