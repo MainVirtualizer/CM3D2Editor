@@ -30,6 +30,8 @@ var i18n = {
 		maidClassMaxFinished: "当前女仆的女仆称号已全部升至满级",
 		yotogiClassMax: "当前女仆的夜伽称号升至满级",
 		yotogiClassMaxFinished: "当前女仆的夜伽称号已全部升至满级",
+		allSkills: "当前女仆全部技能满级",
+		allSkillsFinished: "当前女仆的技能已全部解锁并升至满级"
 	}
 
 };
@@ -284,5 +286,30 @@ var util = {
 			data[i].exp.totalExp = 4530;
 		}
 		Materialize.toast(i18n.util.yotogiClassMaxFinished, 4000);
+	},
+	allSkills: function() {
+		var data = bindings.maid.param.skillData;
+		var skillIndex = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 345, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680, 690, 700, 710, 720, 730, 740, 750, 760, 770, 780, 790, 800, 810, 820, 830, 840, 850, 860, 870, 880, 890, 900, 910, 920, 930, 940, 950, 960, 970, 980, 990, 1000];
+		for (var i = 0; i < skillIndex.length; i++) {
+			var idx = skillIndex[i];
+			if (data[idx]) {
+				data[idx].exp.currentExp = 0;
+				data[idx].exp.level = 3;
+				data[idx].exp.nextExp = 0;
+				data[idx].exp.totalExp = 300;
+			} else {
+				data[idx] = {
+					exp: {
+						currentExp: 0,
+						level: 3,
+						nextExp: 0,
+						totalExp: 300
+					},
+					id: idx,
+					playCount: 0
+				};
+			}
+		}
+		Materialize.toast(i18n.util.allSkillsFinished, 4000);
 	}
-}
+};
