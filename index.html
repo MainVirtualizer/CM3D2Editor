@@ -16,15 +16,21 @@
 	<script type="text/javascript" src="js/long.js"></script>
 </head>
 <body>
+	<ul id="nav-utilities" class="dropdown-content">
+	  <li><a onclick="util.unlockBodyLimits()" i18n-text="util.unlockBodyLimits"></a></li>
+	  <li><a onclick="util.maidClassMax()" i18n-text="util.maidClassMax" bind-style="selectedTab|eval '$0===&quot;#maids&quot;'|visibleIf"></a></li>
+	  <li><a onclick="util.yotogiClassMax()" i18n-text="util.yotogiClassMax" bind-style="selectedTab|eval '$0===&quot;#maids&quot;'|visibleIf"></a></li>
+	</ul>
 	<nav>
 		<div class="nav-wrapper">
-			<a class="brand-logo right hide-on-med-and-down">CM3D2 Editor v0.0.3</a>
+			<a class="brand-logo right hide-on-med-and-down">CM3D2 Editor v0.0.4</a>
 			<ul class="left">
-			<li><a id="button-upload">载入</a></li>
-			<li><a id="button-download">保存</a></li>
-			<li><a id="button-loadjson">载入JSON</a></li>
-			<li><a id="button-savejson">保存JSON</a></li>
-			<li><a id="button-createurl" i18n-text="createurl"></a></li>
+			<li><a id="button-upload" i18n-text="ui.load"></a></li>
+			<li><a id="button-download" bind-style="save|visibleIf" i18n-text="ui.save"></a></li>
+			<li><a id="button-loadjson" i18n-text="ui.loadjson"></a></li>
+			<li><a id="button-savejson" bind-style="save|visibleIf" i18n-text="ui.savejson"></a></li>
+			<li><a id="button-createurl" i18n-text="createurl" bind-style="save|visibleIf"></a></li>
+			<li><a class="dropdown-button" data-activates="nav-utilities" i18n-text="utility" bind-style="save|visibleIf"></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -85,251 +91,250 @@
 		</div>
 	</div>
 
-	<ul class="tabs">
-	<li class="tab"><a href="#profile">玩家信息</a></li>
-	<li class="tab"><a class="active" href="#maids">Maid</a></li>
-	</ul>
-	<div id="profile" class="container">
-		<h4>预览</h4>
-		<div class="row">
-			<div class="input-field col s3">
-			<input type="text" rv-value="header.saveTime"/>
-			<label>存档时间</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="header.playerName"/>
-			<label>玩家名</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="header.gameDay|int32"/>
-			<label>游戏天数</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="header.maidNum|int32"/>
-			<label>女仆个数</label>
-			</div>
-			<div class="input-field col s12">
-			<input type="text" rv-value="header.comment"/>
-			<label>注释</label>
-			</div>
-		</div>
-		<h4>玩家信息</h4>
-		<div class="row">
+	<div id="saveEditor" style="display: none;">
+		<ul class="tabs">
+		<li class="tab"><a onclick="bindings.selectedTab='#profile'" class="active" href="#profile">玩家信息</a></li>
+		<li class="tab"><a onclick="bindings.selectedTab='#maids'" href="#maids">Maid</a></li>
+		</ul>
+		<div id="profile" class="container">
+			<h4>预览</h4>
+			<div class="row">
 				<div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.playerName"/>
-			<label>玩家名</label>
+				<input type="text" bind-value="header.saveTime"/>
+				<label>存档时间</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="header.playerName"/>
+				<label>玩家名</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="header.gameDay|int32"/>
+				<label>游戏天数</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="header.maidNum|int32"/>
+				<label>女仆个数</label>
+				</div>
+				<div class="input-field col s12">
+				<input type="text" bind-value="header.comment"/>
+				<label>注释</label>
+				</div>
 			</div>
-			<div class="input-field col s3">
-				<select rv-value="chrMgr.playerParam.scenarioPhase|int32">
-					<option value="1">还债阶段</option>
-					<option value="2">主要阶段</option>
+			<h4>玩家信息</h4>
+			<div class="row">
+					<div class="input-field col s3">
+				<input type="text" bind-value="player.playerName"/>
+				<label>玩家名</label>
+				</div>
+				<div class="input-field col s3">
+					<select bind-value="player.scenarioPhase|int32">
+						<option value="1">还债阶段</option>
+						<option value="2">主要阶段</option>
+					</select>
+					<label>游戏阶段</label>
+					</div>
+					<div class="input-field col s3">
+				<input type="text" bind-value="player.phaseDays|int32"/>
+				<label>该阶段经过天数</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="player.days|int32"/>
+				<label>游戏天数</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="player.shopUseMoney|int64"/>
+				<label>已消费CR</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="player.money|int64"/>
+				<label>当前CR</label>
+				</div>
+				 <div class="input-field col s3">
+				<input type="text" bind-value="player.initSalonLoan|int64"/>
+				<label >初始贷款额</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="player.salonLoan|int64"/>
+				<label >当前贷款额</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="player.salonClean|int32"/>
+				<label>整洁度</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="player.salonBeautiful|int32"/>
+				<label>华丽度</label>
+				</div>
+				<div class="input-field col s3">
+				<input type="text" bind-value="player.salonEvaluation|int32"/>
+				<label>总评价</label>
+				</div>
+				<div class="input-field col s3">
+				<select bind-value="player.currentSalonGrade|int32">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
 				</select>
-				<label>游戏阶段</label>
+				<label>当前评级</label>
 				</div>
 				<div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.phaseDays|int32"/>
-			<label>该阶段经过天数</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.days|int32"/>
-			<label>游戏天数</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.shopUseMoney|int64"/>
-			<label>已消费CR</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.money|int64"/>
-			<label>当前CR</label>
-			</div>
-			 <div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.initSalonLoan|int64"/>
-			<label >初始贷款额</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.salonLoan|int64"/>
-			<label >当前贷款额</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.salonClean|int32"/>
-			<label>整洁度</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.salonBeautiful|int32"/>
-			<label>华丽度</label>
-			</div>
-			<div class="input-field col s3">
-			<input type="text" rv-value="chrMgr.playerParam.salonEvaluation|int32"/>
-			<label>总评价</label>
-			</div>
-			<div class="input-field col s3">
-			<select rv-value="chrMgr.playerParam.currentSalonGrade|int32">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			</select>
-			<label>当前评级</label>
-			</div>
-			<div class="input-field col s3">
-			<select rv-value="chrMgr.playerParam.bestSalonGrade|int32">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			</select>
-			<label>历史最高评级</label>
+				<select bind-value="player.bestSalonGrade|int32">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+				<label>历史最高评级</label>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div id="maids" class="container">
-		<ul class="collapsible" data-collapsible="accordion">
-		<script type="text/template">
-			<li rv-each-maid="chrMgr.stockMaid">
-				<div class="collapsible-header">
-					<img class="maid-thumbnail" rv-src="maid.misc.texIcon|image"></img>
-					<span rv-text="maid.param.guid"></span>
-				</div>
-				<div class="collapsible-body container">
-					<div class="row">
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.lastName"/>
-							<label>姓</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.firstName"/>
-							<label>名</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="checkbox" checked="checked" rv-checked="maid.param.isFirstNameCall" rv-id="maid.param.guid|format '$0-isFirstNameCall'"/>
-							<label rv-for="maid.param.guid|format '$0-isFirstNameCall'">用名称呼</label>
-						</div>
-						<div class="input-field col s3">
-							<select rv-value="maid.param.contractType|int32">
-								<option value="0">养成中</option>
-								<option value="1">自由女仆</option>
-								<option value="2">专属女仆</option>
-							</select>
-							<label>契约类型</label>
-						</div>
-						<div class="input-field col s3">
-							<select rv-value="maid.param.personal|int32">
-								<option value="0">纯洁</option>
-								<option value="1">冷酷</option>
-								<option value="2">自满</option>
-							</select>
-							<label>性格</label>
-						</div>
-						<div class="input-field col s3">
-							<select rv-value="maid.param.initSeikeiken|int32">
-								<option value="0">无</option>
-								<option value="1">前</option>
-								<option value="2">后</option>
-								<option value="3">两边</option>
-							</select>
-							<label>初始性经验</label>
-						</div>
-						<div class="input-field col s3">
-							<select rv-value="maid.param.seikeiken|int32">
-								<option value="0">无</option>
-								<option value="1">前</option>
-								<option value="2">后</option>
-								<option value="3">两边</option>
-							</select>
-							<label>性经验</label>
-						</div>
-						<div class="input-field col s3">
-							<select rv-value="maid.param.condition|int32">
-								<option value="1">紧张</option>
-								<option value="2">密切</option>
-								<option value="3">信赖</option>
-								<option value="4">恋人</option>
-								<option value="5">奴隶</option>
-							</select>
-							<label>状态</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.hp|_9999"/>
-							<label>体力</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.reason|_9999"/>
-							<label>理性</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.mind|_9999"/>
-							<label>精神</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.likability|_9999"/>
-							<label>好感度</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.care|_9999"/>
-							<label>世话</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.reception|_9999"/>
-							<label>接待</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.studyRate|studyRate"/>
-							<label>习得率</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.teachRate|studyRate"/>
-							<label>指导</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.lovely|_9999"/>
-							<label>可爱</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.elegance|_9999"/>
-							<label>优雅</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.charm|_9999"/>
-							<label>魅力</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.inyoku|_9999"/>
-							<label>欲望</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.mValue|_9999"/>
-							<label>M性</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.hentai|_9999"/>
-							<label>变态</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.housi|_9999"/>
-							<label>侍奉</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.yotogiPlayCount|int32"/>
-							<label>夜伽次数</label>
-						</div>
-						<div class="input-field col s3">
-							<input type="text" rv-value="maid.param.othersPlayCount|int32"/>
-							<label>接客次数</label>
-						</div>
-						<div class="input-field col s12">
-							<textarea class="materialize-textarea" rv-value="maid.param.profile"></textarea>
-							<label>档案</label>
-						</div>
-						<div class="input-field col s12">
-							<a onclick="editBody(event.currentTarget.getAttribute('guid'))" rv-guid="maid.param.guid">编辑身体</a>
-						</div>
+		<div id="maids" class="container">
+			<ul class="tabs">
+				<li class="tab" bind-each-m="save.chrMgr.stockMaid">
+					<a bind-maid-guid="m.param.guid" onclick="selectMaid(this.getAttribute('maid-guid'))">
+						<img class="maid-thumbnail" bind-src="m.misc.texIcon|image"></img>
+					</a>
+				</li>
+			</ul>
+			<div class="container">
+				<div class="row">
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.lastName"/>
+						<label>姓</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.firstName"/>
+						<label>名</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="checkbox" checked="checked" bind-checked="maid.param.isFirstNameCall" bind-id="maid.param.guid|format '$0-isFirstNameCall'"/>
+						<label bind-for="maid.param.guid|format '$0-isFirstNameCall'">用名称呼</label>
+					</div>
+					<div class="input-field col s3">
+						<select bind-value="maid.param.contractType|int32">
+							<option value="0">养成中</option>
+							<option value="1">自由女仆</option>
+							<option value="2">专属女仆</option>
+						</select>
+						<label>契约类型</label>
+					</div>
+					<div class="input-field col s3">
+						<select bind-value="maid.param.personal|int32">
+							<option value="0">纯洁</option>
+							<option value="1">冷酷</option>
+							<option value="2">自满</option>
+						</select>
+						<label>性格</label>
+					</div>
+					<div class="input-field col s3">
+						<select bind-value="maid.param.initSeikeiken|int32">
+							<option value="0">无</option>
+							<option value="1">前</option>
+							<option value="2">后</option>
+							<option value="3">两边</option>
+						</select>
+						<label>初始性经验</label>
+					</div>
+					<div class="input-field col s3">
+						<select bind-value="maid.param.seikeiken|int32">
+							<option value="0">无</option>
+							<option value="1">前</option>
+							<option value="2">后</option>
+							<option value="3">两边</option>
+						</select>
+						<label>性经验</label>
+					</div>
+					<div class="input-field col s3">
+						<select bind-value="maid.param.condition|int32">
+							<option value="1">紧张</option>
+							<option value="2">密切</option>
+							<option value="3">信赖</option>
+							<option value="4">恋人</option>
+							<option value="5">奴隶</option>
+						</select>
+						<label>状态</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.hp|_9999"/>
+						<label>体力</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.reason|_9999"/>
+						<label>理性</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.mind|_9999"/>
+						<label>精神</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.likability|_9999"/>
+						<label>好感度</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.care|_9999"/>
+						<label>世话</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.reception|_9999"/>
+						<label>接待</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.studyRate|studyRate"/>
+						<label>习得率</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.teachRate|studyRate"/>
+						<label>指导</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.lovely|_9999"/>
+						<label>可爱</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.elegance|_9999"/>
+						<label>优雅</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.charm|_9999"/>
+						<label>魅力</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.inyoku|_9999"/>
+						<label>欲望</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.mValue|_9999"/>
+						<label>M性</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.hentai|_9999"/>
+						<label>变态</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.housi|_9999"/>
+						<label>侍奉</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.yotogiPlayCount|int32"/>
+						<label>夜伽次数</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" bind-value="maid.param.othersPlayCount|int32"/>
+						<label>接客次数</label>
+					</div>
+					<div class="input-field col s12">
+						<textarea class="materialize-textarea" bind-value="maid.param.profile"></textarea>
+						<label>档案</label>
+					</div>
+					<div class="input-field col s12">
+						<a onclick="editBody()">编辑身体</a>
 					</div>
 				</div>
-			</li>
-		</script>
-		</ul>
+			</div>
+		</div>
 	</div>
 	<div style="height: 500px;"></div>
 	<script src="js/main.js"></script>

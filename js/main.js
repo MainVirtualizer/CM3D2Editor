@@ -1,9 +1,9 @@
 'use strict';
 
 var openedFileName;
-var activeBind;
-var activeModel;
-var bindings = {};
+var bindings = {
+	selectedTab: '#profile'
+};
 
 var i18n = {
 	createurl: "创建链接",
@@ -12,7 +12,25 @@ var i18n = {
 	nothingloaded: "你还没有加载任何文件",
 
 	bodyEditor: "身体编辑器",
-	pleaseSelect: "请选择"
+	pleaseSelect: "请选择",
+
+	utility: "工具",
+
+	ui: {
+		load: "载入",
+		save: "保存",
+		loadjson: "载入JSON",
+		savejson: "保存JSON",
+	},
+
+	util: {
+		unlockBodyLimits: "解锁全部女仆身高限制",
+		unlockBodyLimitsFinished: "女仆身高限制已全部解锁",
+		maidClassMax: "当前女仆的女仆称号升至满级",
+		maidClassMaxFinished: "当前女仆的女仆称号已全部升至满级",
+		yotogiClassMax: "当前女仆的夜伽称号升至满级",
+		yotogiClassMaxFinished: "当前女仆的夜伽称号已全部升至满级",
+	}
 
 };
 
@@ -22,10 +40,13 @@ function updateMaterialSelect(obj) {
 }
 
 function updateMaterialize() {
-	$("input").change();
-	$("textarea").change().keydown();
-	updateMaterialSelect($('select'));
-	$('.collapsible').collapsible();
+	setTimeout(function() {
+		$("input").change();
+		$("textarea").change().keydown();
+		updateMaterialSelect($('select'));
+		$('.collapsible').collapsible();
+		$('ul.tabs').tabs();
+	}, 300);
 }
 
 // Setup Material select
@@ -98,41 +119,32 @@ $('#button-loadjson').click(function() {
 });
 
 $('#button-download').click(function() {
-	if (!activeModel) {
-		alert(i18n.nothingloaded);
-		return;
-	}
-	saveAs(new Blob([new Uint8Array(writeSaveData(activeModel))]), openedFileName + '.save');
+	saveAs(new Blob([new Uint8Array(writeSaveData(bindings.save))]), openedFileName + '.save');
 });
 
 $('#button-savejson').click(function() {
-	if (!activeModel) {
-		alert(i18n.nothingloaded);
-		return;
-	}
-	saveTextAs(JSON.stringify(activeModel, null, 2), openedFileName + '.json');
+	saveTextAs(JSON.stringify(bindings.save, null, 2), openedFileName + '.json');
 });
 
 $('#button-createurl').click(function() {
-	if (!activeModel) {
-		alert(i18n.nothingloaded);
-		return;
-	}
 	var newWindow = window.open();
-	newWindow.document.body.innerHTML = '如果安装了迅雷 请用右键另存为<br/><a download="' + openedFileName + '.save" href="' + createDataURL(writeSaveData(activeModel)) + '">CM3D2 Save文件格式</a><br/>' + '<a download="' + openedFileName + '.json" href="' + createDataURL(JSON.stringify(activeModel, null, 2)) + '">JSON文件格式</a>';
+	newWindow.document.body.innerHTML = '如果安装了迅雷 请用右键另存为<br/><a download="' + openedFileName + '.save" href="' + createDataURL(writeSaveData(bindings.save)) + '">CM3D2 Save文件格式</a><br/>' + '<a download="' + openedFileName + '.json" href="' + createDataURL(JSON.stringify(bindings.save, null, 2)) + '">JSON文件格式</a>';
 });
 
 function loadJSON(model) {
-	if (activeModel) {
-		activeModel.version = model.version;
-		activeModel.header = model.header;
-		activeModel.chrMgr = model.chrMgr;
-		activeModel.script = model.script;
-	} else {
-		activeModel = model;
-		activeBind = rivets.bind($('body'), activeModel);
-	}
+	bindings.save = model;
 
+	// Short path
+	bindings.header = model.header;
+	bindings.player = model.chrMgr.playerParam;
+
+	// Select first tab
+	$('a[href=#profile]').click();
+
+	// Select first maid
+	$($('a[maid-guid]')[0]).click();
+
+	$('#saveEditor').show(200);
 	updateMaterialize();
 }
 
@@ -154,7 +166,9 @@ rivets.formatters.int32 = {
 
 rivets.formatters.int64 = {
 	read: function(value) {
-		return new Long(value[0], value[1]).toString();
+		if (value)
+			return new Long(value[0], value[1]).toString();
+		return '';
 	},
 	publish: function(value) {
 		try {
@@ -193,6 +207,18 @@ rivets.formatters.format = function(data, string) {
 	return string.replace('$0', data);
 };
 
+rivets.formatters.eval = function(data, string) {
+	return new Function('$0', 'return ' + string)(data);
+};
+
+rivets.formatters.visibleIf = function(data) {
+	if (data) {
+		return '';
+	} else {
+		return 'display: none';
+	}
+};
+
 $(function() {
 	var templates = $('script[type="text/template"]');
 	for (var i = 0; i < templates.length; i++) {
@@ -202,16 +228,19 @@ $(function() {
 });
 
 function getMaidByGUID(guid) {
-	var maids = activeModel.chrMgr.stockMaid;
+	var maids = bindings.save.chrMgr.stockMaid;
 	for (var i = 0; i < maids.length; i++) {
 		if (maids[i].param.guid === guid) return maids[i];
 	}
 	return null;
 }
 
-function editBody(guid) {
+function selectMaid(guid) {
 	bindings.maid = getMaidByGUID(guid);
+	updateMaterialize();
+}
 
+function editBody(guid) {
 	$('#bodyEditor_selector').val('');
 	bindings.bodyEditor.property = null;
 
@@ -228,3 +257,40 @@ var bodyEditor = {
 		updateMaterialize();
 	}
 };
+
+var util = {
+	unlockBodyLimits: function() {
+		var allMaids = bindings.save.chrMgr.stockMaid;
+		for (var i = 0; i < allMaids.length; i++) {
+			var maid = allMaids[i];
+			maid.props.DouPer.min = 0;
+			maid.props.DouPer.max = 100;
+			maid.props.sintyou.min = 0;
+			maid.props.sintyou.max = 100;
+		}
+		Materialize.toast(i18n.util.unlockBodyLimitsFinished, 4000);
+	},
+	maidClassMax: function() {
+		var data = bindings.maid.param.maidClassData;
+		var totalExp = [320, 395, 395, 395, 500, 500, 500];
+		for (var i = 0; i < 7; i++) {
+			data[i].have = true;
+			data[i].exp.currentExp = 0;
+			data[i].exp.level = 10;
+			data[i].exp.nextExp = 0;
+			data[i].exp.totalExp = totalExp[i];
+		}
+		Materialize.toast(i18n.util.maidClassMaxFinished, 4000);
+	},
+	yotogiClassMax: function() {
+		var data = bindings.maid.param.yotogiClassData;
+		for (var i = 0; i < 7; i++) {
+			data[i].have = true;
+			data[i].exp.currentExp = 0;
+			data[i].exp.level = 10;
+			data[i].exp.nextExp = 0;
+			data[i].exp.totalExp = 4530;
+		}
+		Materialize.toast(i18n.util.yotogiClassMaxFinished, 4000);
+	}
+}
