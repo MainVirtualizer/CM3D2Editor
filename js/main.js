@@ -211,14 +211,6 @@ rivets.formatters.eval = function(data, string) {
 	return new Function('$0', 'return ' + string)(data);
 };
 
-rivets.formatters.visibleIf = function(data) {
-	if (data) {
-		return '';
-	} else {
-		return 'display: none';
-	}
-};
-
 $(function() {
 	var templates = $('script[type="text/template"]');
 	for (var i = 0; i < templates.length; i++) {
