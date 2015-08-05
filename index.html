@@ -14,6 +14,15 @@
 	<script type="text/javascript" src="js/FileSaver.js"></script>
 	<script type="text/javascript" src="js/cm3d2.js"></script>
 	<script type="text/javascript" src="js/long.js"></script>
+
+	<script type="text/plain" id="updateHistory">
+更新历史<br/>
+0.0.5<br/>
+&emsp;&emsp;新增性感带属性值修改<br/>
+&emsp;&emsp;新增日间工作一键满级<br/>
+0.0.1-0.0.4<br/>
+&emsp;&emsp;略
+	</script>
 </head>
 <body>
 	<ul id="nav-utilities" class="dropdown-content">
@@ -26,7 +35,7 @@
 	</ul>
 	<nav>
 		<div class="nav-wrapper">
-			<a class="brand-logo right hide-on-med-and-down">CM3D2 Editor v0.0.4</a>
+			<a class="brand-logo right hide-on-med-and-down">CM3D2 Editor v{version}</a>
 			<ul class="left">
 			<li><a id="button-upload" i18n-text="ui.load"></a></li>
 			<li><a id="button-download" bind-show="save" i18n-text="ui.save"></a></li>
@@ -38,6 +47,15 @@
 		</div>
 	</nav>
 
+	<div id="message" class="modal">
+    <div class="modal-content">
+      <h4 bind-text="msgbox.title"></h4>
+      <p bind-html="msgbox.text"></p>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close btn-flat">OK</a>
+    </div>
+  </div>
 	<div id="bodyEditor" class="modal">
 		<div class="modal-content">
 			<h4 i18n-text="bodyEditor"></h4>

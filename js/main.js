@@ -2,7 +2,14 @@
 
 var openedFileName;
 var bindings = {
-	showMaidUtil: false
+	showMaidUtil: false,
+
+	version: "0.0.5",
+
+	msgbox: {
+		title: '',
+		text: ''
+	}
 };
 
 var i18n = {
@@ -47,6 +54,12 @@ var i18n = {
 
 };
 
+function showMsgbox(title, text) {
+	bindings.msgbox.title = title;
+	bindings.msgbox.text = text;
+	$('#message').openModal();
+}
+
 function updateMaterialSelect(obj) {
 	obj.material_select('update');
 	obj.closest('.input-field').children('span.caret').remove();
@@ -65,7 +78,8 @@ function updateMaterialize() {
 // Setup Material select
 $(document).ready(function() {
 	rivets.bind($('body'), i18n, {
-		prefix: 'i18n'
+		prefix: 'i18n',
+		templateDelimiters: '',
 	});
 	rivets.bind($('body'), bindings, {
 		prefix: 'bind'
@@ -342,3 +356,8 @@ var util = {
 		Materialize.toast(i18n.util.allWorkFinished, 4000);
 	}
 };
+
+if (localStorage.version !== bindings.version) {
+	localStorage.version = bindings.version;
+	showMsgbox('CM3D2 Editor 已经更新到版本 ' + bindings.version, $('#updateHistory').text());
+}
