@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "0.0.5",
+	version: "1.0.0",
 
 	msgbox: {
 		title: '',
@@ -18,6 +18,39 @@ var i18n = {
 		sexual_throat: "性感带（喉）",
 		sexual_nipple: "性感带（乳头）",
 		sexual_curi: "性感带（私部）",
+
+		feature: {
+			energeticSmile: '充满活力的笑容',
+			cheerfulCharm: '开朗魅力',
+			graceful: '优美',
+			pure: '纯洁',
+			angelic: '天使',
+			charming: '魅力',
+			matureAppeal: '成熟魅力',
+			devilishCharm: '魔性魅力',
+			dignified: '端庄',
+			noble: '高贵',
+			bashful: '害羞',
+			meek: '温顺',
+			bewitchingCharm: '诱人魅力',
+			elegant: '上品',
+			refined: '优雅',
+			completelyDevoted: '完全服从',
+			servant: '仆从',
+			secretPast: '过去的秘密',
+			fatigue: '疲劳',
+			pastIndiscretion: '过去的过错',
+		},
+		propensity: {
+			licentious: "淫乱",
+			m: "M女",
+			anal: "喜欢后穴",
+			twohole: "喜欢两穴",
+			hentai: "变态",
+			service: "喜欢奉仕",
+			creampie: "喜欢中出",
+			drink: "喜欢饮精",
+		}
 	},
 
 	createurl: "创建链接",
@@ -26,6 +59,8 @@ var i18n = {
 	nothingloaded: "你还没有加载任何文件",
 
 	bodyEditor: "身体编辑器",
+	featureEditor: "特性编辑器",
+	propensityEditor: "性癖编辑器",
 	pleaseSelect: "请选择",
 
 	utility: "工具",
@@ -35,6 +70,8 @@ var i18n = {
 		save: "保存",
 		loadjson: "载入JSON",
 		savejson: "保存JSON",
+
+		close: "关闭",
 	},
 
 	util: {
@@ -72,18 +109,6 @@ function updateMaterialize() {
 		$('ul.tabs').tabs();
 	}, 300);
 }
-
-// Setup Material select
-$(document).ready(function() {
-	rivets.bind($('body'), i18n, {
-		prefix: 'i18n',
-		templateDelimiters: '',
-	});
-	rivets.bind($('body'), bindings, {
-		prefix: 'bind'
-	});
-	$('select').material_select();
-});
 
 function openOpenDialog(callback, accept) {
 	var fileSelector = $('<input type="file">');
@@ -224,6 +249,27 @@ rivets.formatters._9999 = {
 	}
 };
 
+rivets.adapters['#'] = {
+	observe: function(obj, keypath, callback) {},
+	unobserve: function(obj, keypath, callback) {},
+	get: function(obj, keypath) {
+		keypath = JSON.parse(keypath);
+		return obj.indexOf(keypath) !== -1;
+	},
+	set: function(obj, keypath, value) {
+		keypath = JSON.parse(keypath);
+		var idx = obj.indexOf(keypath);
+		var existing = idx !== -1;
+		if (existing !== value) {
+			if (value) {
+				obj.push(keypath);
+			} else {
+				obj.splice(idx, 1);
+			}
+		}
+	}
+}
+
 rivets.formatters.image = function(base64) {
 	return 'data:image/png;base64,' + base64;
 }
@@ -262,6 +308,14 @@ function editBody(guid) {
 	bindings.bodyEditor.property = null;
 
 	$('#bodyEditor').openModal();
+};
+
+function editFeature(guid) {
+	$('#featureEditor').openModal();
+};
+
+function editPropensity(guid) {
+	$('#propensityEditor').openModal();
 };
 
 bindings.bodyEditor = {
@@ -354,6 +408,17 @@ var util = {
 		Materialize.toast(i18n.util.allWorkFinished, 4000);
 	}
 };
+
+$(document).ready(function() {
+	rivets.bind($('body'), i18n, {
+		prefix: 'i18n',
+		templateDelimiters: '',
+	});
+	rivets.bind($('body'), bindings, {
+		prefix: 'bind'
+	});
+	$('select').material_select();
+});
 
 if (localStorage.version !== bindings.version) {
 	localStorage.version = bindings.version;
