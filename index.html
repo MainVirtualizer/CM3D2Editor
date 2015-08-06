@@ -15,6 +15,8 @@
 	<script type="text/javascript" src="js/cm3d2.js"></script>
 	<script type="text/javascript" src="js/long.js"></script>
 
+	<script type="text/javascript" src="i18n/zh.js"></script>
+
 	<script type="text/plain" id="updateHistory">
 更新历史<br/>
 1.1.0<br/>
@@ -55,7 +57,7 @@
 		</div>
 	</nav>
 
-	<div id="message" class="modal">
+	<div id="message" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4 bind-text="msgbox.title"></h4>
       <p bind-html="msgbox.text"></p>
@@ -64,7 +66,7 @@
       <a class="modal-action modal-close btn-flat">OK</a>
     </div>
   </div>
-	<div id="bodyEditor" class="modal">
+	<div id="bodyEditor" class="modal modal-fixed-footer">
 		<div class="modal-content">
 			<h4 i18n-text="bodyEditor"></h4>
 			<div class="input-field">
@@ -116,10 +118,10 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<a class="modal-action modal-close btn-flat">关闭</a>
+			<a class="modal-action modal-close btn-flat" i18n-text="ui.close"></a>
 		</div>
 	</div>
-	<div id="featureEditor" class="modal">
+	<div id="featureEditor" class="modal modal-fixed-footer">
 		<div class="modal-content">
 			<h4 i18n-text="featureEditor"></h4>
 			<div class="input-field">
@@ -207,7 +209,7 @@
 			<a class="modal-action modal-close btn-flat" i18n-text="ui.close"></a>
 		</div>
 	</div>
-	<div id="propensityEditor" class="modal">
+	<div id="propensityEditor" class="modal modal-fixed-footer">
 		<div class="modal-content">
 			<h4 i18n-text="propensityEditor"></h4>
 			<div class="input-field">
@@ -500,16 +502,16 @@
 					</div>
 					<div class="input-field col s12">
 						<textarea class="materialize-textarea" bind-value="maid.param.profile"></textarea>
-						<label>档案</label>
+						<label i18n-text="game.profile"></label>
 					</div>
 					<div class="input-field col s3">
-						<a onclick="editBody()">编辑身体</a>
+						<a onclick="editBody()" i18n-text="ui.editBody"></a>
 					</div>
 					<div class="input-field col s3">
-						<a onclick="editFeature()">编辑特征</a>
+						<a onclick="editFeature()" i18n-text="ui.editFeature"></a>
 					</div>
 					<div class="input-field col s3">
-						<a onclick="editPropensity()">编辑性癖</a>
+						<a onclick="editPropensity()" i18n-text="ui.editPropensity"></a>
 					</div>
 				</div>
 			</div>
