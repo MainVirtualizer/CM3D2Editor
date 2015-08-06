@@ -17,6 +17,9 @@
 
 	<script type="text/plain" id="updateHistory">
 更新历史<br/>
+1.1.0<br/>
+&emsp;&emsp;新增物品一键解锁<br/>
+&emsp;&emsp;新增奖杯一键解锁<br/>
 1.0.0<br/>
 &emsp;&emsp;新增特征修改<br/>
 &emsp;&emsp;新增性癖修改<br/>
@@ -30,6 +33,8 @@
 <body>
 	<ul id="nav-utilities" class="dropdown-content">
 	  <li><a onclick="util.unlockBodyLimits()" i18n-text="util.unlockBodyLimits"></a></li>
+	  <li><a onclick="util.allItems()" i18n-text="util.allItems"></a></li>
+	  <li><a onclick="util.allTrophies()" i18n-text="util.allTrophies"></a></li>
 	  <li class="divider" bind-show="showMaidUtil"></li>
 	  <li><a onclick="util.maidClassMax()" i18n-text="util.maidClassMax" bind-show="showMaidUtil"></a></li>
 	  <li><a onclick="util.yotogiClassMax()" i18n-text="util.yotogiClassMax" bind-show="showMaidUtil"></a></li>

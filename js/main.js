@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.0.0",
+	version: "1.1.0",
 
 	msgbox: {
 		title: '',
@@ -77,6 +77,10 @@ var i18n = {
 	util: {
 		unlockBodyLimits: "解锁全部女仆身高限制",
 		unlockBodyLimitsFinished: "女仆身高限制已全部解锁",
+		allItems: "解锁全部物品",
+		allItemsFinished: "全部物品已解锁",
+		allTrophies: "解锁全部奖杯",
+		allTrophiesFinished: "全部奖杯已解锁",
 		maidClassMax: "当前女仆的女仆称号升至满级",
 		maidClassMaxFinished: "当前女仆的女仆称号已全部升至满级",
 		yotogiClassMax: "当前女仆的夜伽称号升至满级",
@@ -340,6 +344,27 @@ var util = {
 			maid.props.sintyou.max = 100;
 		}
 		Materialize.toast(i18n.util.unlockBodyLimitsFinished, 4000);
+	},
+	allItems: function() {
+		var list = bindings.player.haveItemList;
+		var keys = Object.getOwnPropertyNames(list);
+		for (var i = 0; i < keys.length; i++) {
+			if (list.propertyIsEnumerable(keys[i])) {
+				list[keys[i]] = true;
+			}
+		}
+		Materialize.toast(i18n.util.allItemsFinished, 4000);
+	},
+	allTrophies: function() {
+		bindings.player.haveTrophyList = [
+			1, 2, 3, 4, 5, 6, 7, 8, 9,
+			10, 20, 30, 40, 50, 60, 70, 80, 90,
+			100, 110, 120, 130, 140, 150, 160, 170, 180, 190,
+			200, 210, 220, 230, 240, 250, 260, 270, 280, 290,
+			300, 310, 320, 330, 340, 350, 360, 370, 380, 390,
+			400, 410, 420, 430, 440, 450, 460, 470, 480, 490
+		];
+		Materialize.toast(i18n.util.allTrophiesFinished, 4000);
 	},
 	maidClassMax: function() {
 		var data = bindings.maid.param.maidClassData;
