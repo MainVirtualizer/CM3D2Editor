@@ -81,7 +81,7 @@ var i18n = {
 			firstName: "First Name",
 			callByName: "Call by Name",
 
-			contactType: "Contact Type",
+			contractType: "Contract Type",
 			nurture: "Trainee",
 			freeMaid: "Free Maid",
 			privateMaid: "Private Maid",

@@ -81,7 +81,7 @@ var i18n = {
 			firstName: "名",
 			callByName: "用名称呼",
 
-			contactType: "契约类型",
+			contractType: "契约类型",
 			nurture: "养成中",
 			freeMaid: "自由女仆",
 			privateMaid: "专属女仆",
