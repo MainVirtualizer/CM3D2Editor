@@ -15,22 +15,7 @@
 	<script type="text/javascript" src="js/cm3d2.js"></script>
 	<script type="text/javascript" src="js/long.js"></script>
 
-	<script type="text/javascript" src="i18n/zh.js"></script>
-
-	<script type="text/plain" id="updateHistory">
-更新历史<br/>
-1.1.0<br/>
-&emsp;&emsp;新增物品一键解锁<br/>
-&emsp;&emsp;新增奖杯一键解锁<br/>
-1.0.0<br/>
-&emsp;&emsp;新增特征修改<br/>
-&emsp;&emsp;新增性癖修改<br/>
-0.0.5<br/>
-&emsp;&emsp;新增性感带属性值修改<br/>
-&emsp;&emsp;新增日间工作一键满级<br/>
-0.0.1-0.0.4<br/>
-&emsp;&emsp;略
-	</script>
+	<script type="text/javascript" src="i18n/en.js"></script>
 </head>
 <body>
 	<ul id="nav-utilities" class="dropdown-content">
@@ -51,7 +36,7 @@
 			<li><a id="button-download" bind-show="save" i18n-text="ui.save"></a></li>
 			<li><a id="button-loadjson" i18n-text="ui.loadjson"></a></li>
 			<li><a id="button-savejson" bind-show="save" i18n-text="ui.savejson"></a></li>
-			<li><a id="button-createurl" i18n-text="createurl" bind-show="save"></a></li>
+			<li i18n-show="createurl"><a id="button-createurl" i18n-text="createurl" bind-show="save"></a></li>
 			<li><a class="dropdown-button" data-activates="nav-utilities" i18n-text="utility" bind-show="save"></a></li>
 			</ul>
 		</div>
@@ -72,49 +57,49 @@
 			<div class="input-field">
 				<select id="bodyEditor_selector" onchange="bodyEditor.changeProperty(this.value)" class="browser-default">
 					<option value="" disabled selected i18n-text="pleaseSelect"></option>
-					<optgroup label="头">
-						<option value="EyeScl">眼睛大小</option>
-						<option value="EyePosX">眼睛横向位置</option>
-						<option value="EyePosY">眼睛纵向位置</option>
-						<option value="HeadX">头宽度</option>
-						<option value="HeadY">头高度</option>
+					<optgroup i18n-label="game.body.head">
+						<option value="EyeScl" i18n-text="game.body.eyeSize"></option>
+						<option value="EyePosX" i18n-text="game.body.eyeX"></option>
+						<option value="EyePosY" i18n-text="game.body.eyeY"></option>
+						<option value="HeadX" i18n-text="game.body.headW"></option>
+						<option value="HeadY" i18n-text="game.body.headH"></option>
 					</optgroup>
-					<optgroup label="全身">
-						<option value="DouPer">腿长</option>
-						<option value="sintyou">身长</option>
+					<optgroup i18n-label="game.body.whole">
+						<option value="DouPer" i18n-text="game.body.legL"></option>
+						<option value="sintyou" i18n-text="game.body.bodyL"></option>
 					</optgroup>
-					<optgroup label="胸">
-						<option value="MuneL">胸的大小</option>
-						<option value="MuneTare">胸的下垂</option>
-						<option value="MuneUpDown">胸的上下</option>
-						<option value="MuneYori">胸的距离</option>
+					<optgroup i18n-label="game.body.breast">
+						<option value="MuneL" i18n-text="game.body.breastSize"></option>
+						<option value="MuneTare" i18n-text="game.body.breastSagging"></option>
+						<option value="MuneUpDown" i18n-text="game.body.breastUpDown"></option>
+						<option value="MuneYori" i18n-text="game.body.breastDevi"></option>
 					</optgroup>
-					<optgroup label="上半身">
-						<option value="west">腰粗细</option>
-						<option value="Hara">腹部大小</option>
-						<option value="kata">肩幅</option>
-						<option value="ArmL">腕粗细</option>
-						<option value="UdeScl">腕长</option>
-						<option value="KubiScl">颈长</option>
+					<optgroup i18n-label="game.body.upper">
+						<option value="west" i18n-text="game.body.waist"></option>
+						<option value="Hara" i18n-text="game.body.belly"></option>
+						<option value="kata" i18n-text="game.body.shoulder"></option>
+						<option value="ArmL" i18n-text="game.body.armT"></option>
+						<option value="UdeScl" i18n-text="game.body.armL"></option>
+						<option value="KubiScl" i18n-text="game.body.neckL"></option>
 					</optgroup>
-					<optgroup label="下半身">
-						<option value="koshi">臀部</option>
-						<option value="RegFat">腿部粗细</option>
-						<option value="RegMeet">腿部肌肉大小</option>
+					<optgroup i18n-label="game.body.lower">
+						<option value="koshi" i18n-text="game.body.butt"></option>
+						<option value="RegFat" i18n-text="game.body.legFat"></option>
+						<option value="RegMeet" i18n-text="game.body.legMuscle"></option>
 					</optgroup>
 				</select>
 			</div>
 			<div class="input-field">
 				 <input type="text" bind-value="bodyEditor.property.min|int32"/>
-				 <label>最小值</label>
+				 <label>[min]</label>
 			</div>
 			<div class="input-field">
 				 <input type="text" bind-value="bodyEditor.property.max|int32"/>
-				 <label>最大值</label>
+				 <label>[max]</label>
 			</div>
 			<div class="input-field">
 				 <input type="text" bind-value="bodyEditor.property.value|int32"/>
-				 <label>当前值</label>
+				 <label>[value]</label>
 			</div>
 		</div>
 		<div class="modal-footer">
@@ -252,81 +237,81 @@
 
 	<div id="saveEditor" style="display: none;">
 		<ul class="tabs">
-		<li class="tab"><a onclick="bindings.showMaidUtil=false" class="active" href="#profile">玩家信息</a></li>
+		<li class="tab"><a onclick="bindings.showMaidUtil=false" class="active" href="#profile" i18n-text="game.playerParam"></a></li>
 		<li class="tab"><a onclick="bindings.showMaidUtil=true" href="#maids">Maid</a></li>
 		</ul>
 		<div id="profile" class="container">
-			<h4>预览</h4>
+			<h4>[game.summary]</h4>
 			<div class="row">
 				<div class="input-field col s3">
 				<input type="text" bind-value="header.saveTime"/>
-				<label>存档时间</label>
+				<label>[game.saveTime]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="header.playerName"/>
-				<label>玩家名</label>
+				<label>[game.playerName]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="header.gameDay|int32"/>
-				<label>游戏天数</label>
+				<label>[game.gameDays]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="header.maidNum|int32"/>
-				<label>女仆个数</label>
+				<label>[game.maidCount]</label>
 				</div>
 				<div class="input-field col s12">
 				<input type="text" bind-value="header.comment"/>
-				<label>注释</label>
+				<label>[game.comment]</label>
 				</div>
 			</div>
-			<h4>玩家信息</h4>
+			<h4>[game.playerParam]</h4>
 			<div class="row">
 					<div class="input-field col s3">
 				<input type="text" bind-value="player.playerName"/>
-				<label>玩家名</label>
+				<label>[game.playerName]</label>
 				</div>
 				<div class="input-field col s3">
 					<select bind-value="player.scenarioPhase|int32">
-						<option value="1">还债阶段</option>
-						<option value="2">主要阶段</option>
+						<option value="1">[game.stage.loan]</option>
+						<option value="2">[game.stage.main]</option>
 					</select>
-					<label>游戏阶段</label>
+					<label>[game.stage._]</label>
 					</div>
 					<div class="input-field col s3">
 				<input type="text" bind-value="player.phaseDays|int32"/>
-				<label>该阶段经过天数</label>
+				<label>[game.phaseDays]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="player.days|int32"/>
-				<label>游戏天数</label>
+				<label>[game.gameDays]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="player.shopUseMoney|int64"/>
-				<label>已消费CR</label>
+				<label>[game.shopUseMoney]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="player.money|int64"/>
-				<label>当前CR</label>
+				<label>[game.money]</label>
 				</div>
 				 <div class="input-field col s3">
 				<input type="text" bind-value="player.initSalonLoan|int64"/>
-				<label >初始贷款额</label>
+				<label>[game.initSalonLoan]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="player.salonLoan|int64"/>
-				<label >当前贷款额</label>
+				<label>[game.salonLoan]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="player.salonClean|int32"/>
-				<label>整洁度</label>
+				<label>[game.clean]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="player.salonBeautiful|int32"/>
-				<label>华丽度</label>
+				<label>[game.beauty]</label>
 				</div>
 				<div class="input-field col s3">
 				<input type="text" bind-value="player.salonEvaluation|int32"/>
-				<label>总评价</label>
+				<label>[game.evaluation]</label>
 				</div>
 				<div class="input-field col s3">
 				<select bind-value="player.currentSalonGrade|int32">
@@ -336,7 +321,7 @@
 					<option>4</option>
 					<option>5</option>
 				</select>
-				<label>当前评级</label>
+				<label>[game.currentSalonGrade]</label>
 				</div>
 				<div class="input-field col s3">
 				<select bind-value="player.bestSalonGrade|int32">
@@ -346,7 +331,7 @@
 					<option>4</option>
 					<option>5</option>
 				</select>
-				<label>历史最高评级</label>
+				<label>[game.bestSalonGrade]</label>
 				</div>
 			</div>
 		</div>
@@ -362,127 +347,127 @@
 				<div class="row">
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.lastName"/>
-						<label>姓</label>
+						<label>[game.maid.lastName]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.firstName"/>
-						<label>名</label>
+						<label>[game.maid.firstName]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="checkbox" checked="checked" bind-checked="maid.param.isFirstNameCall" bind-id="maid.param.guid|format '$0-isFirstNameCall'"/>
-						<label bind-for="maid.param.guid|format '$0-isFirstNameCall'">用名称呼</label>
+						<label bind-for="maid.param.guid|format '$0-isFirstNameCall'">[game.maid.callByName]</label>
 					</div>
 					<div class="input-field col s3">
 						<select bind-value="maid.param.contractType|int32">
-							<option value="0">养成中</option>
-							<option value="1">自由女仆</option>
-							<option value="2">专属女仆</option>
+							<option value="0">[game.maid.nurture]</option>
+							<option value="1">[game.maid.freeMaid]</option>
+							<option value="2">[game.maid.privateMaid]</option>
 						</select>
-						<label>契约类型</label>
+						<label>[game.maid.contactType]</label>
 					</div>
 					<div class="input-field col s3">
 						<select bind-value="maid.param.personal|int32">
-							<option value="0">纯洁</option>
-							<option value="1">冷酷</option>
-							<option value="2">自满</option>
+							<option value="0">[game.maid.p_innocent]</option>
+							<option value="1">[game.maid.p_cool]</option>
+							<option value="2">[game.maid.p_proud]</option>
 						</select>
-						<label>性格</label>
+						<label>[game.maid.personality]</label>
 					</div>
 					<div class="input-field col s3">
 						<select bind-value="maid.param.initSeikeiken|int32">
-							<option value="0">无</option>
-							<option value="1">前</option>
-							<option value="2">后</option>
-							<option value="3">两边</option>
+							<option value="0">[game.seikenken.none]</option>
+							<option value="1">[game.seikenken.front]</option>
+							<option value="2">[game.seikenken.back]</option>
+							<option value="3">[game.seikenken.both]</option>
 						</select>
-						<label>初始性经验</label>
+						<label>[game.maid.initSeikenken]</label>
 					</div>
 					<div class="input-field col s3">
 						<select bind-value="maid.param.seikeiken|int32">
-							<option value="0">无</option>
-							<option value="1">前</option>
-							<option value="2">后</option>
-							<option value="3">两边</option>
+							<option value="0">[game.seikenken.none]</option>
+							<option value="1">[game.seikenken.front]</option>
+							<option value="2">[game.seikenken.back]</option>
+							<option value="3">[game.seikenken.both]</option>
 						</select>
-						<label>性经验</label>
+						<label>[game.maid.seikenken]</label>
 					</div>
 					<div class="input-field col s3">
 						<select bind-value="maid.param.condition|int32">
-							<option value="1">紧张</option>
-							<option value="2">密切</option>
-							<option value="3">信赖</option>
-							<option value="4">恋人</option>
-							<option value="5">奴隶</option>
+							<option value="1">[game.maid.c_nervous]</option>
+							<option value="2">[game.maid.c_acquaintance]</option>
+							<option value="3">[game.maid.c_trust]</option>
+							<option value="4">[game.maid.c_lover]</option>
+							<option value="5">[game.maid.c_slave]</option>
 						</select>
-						<label>状态</label>
+						<label>[game.maid.condition]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.hp|_9999"/>
-						<label>体力</label>
+						<label>[game.maid.hp]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.reason|_9999"/>
-						<label>理性</label>
+						<label>[game.maid.reason]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.mind|_9999"/>
-						<label>精神</label>
+						<label>[game.maid.mind]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.likability|_9999"/>
-						<label>好感度</label>
+						<label>[game.maid.likability]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.care|_9999"/>
-						<label>世话</label>
+						<label>[game.maid.care]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.reception|_9999"/>
-						<label>接待</label>
+						<label>[game.maid.reception]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.studyRate|rate"/>
-						<label>习得率</label>
+						<label>[game.maid.studyRate]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.teachRate|rate"/>
-						<label>指导</label>
+						<label>[game.maid.teachRate]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.lovely|_9999"/>
-						<label>可爱</label>
+						<label>[game.maid.lovely]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.elegance|_9999"/>
-						<label>优雅</label>
+						<label>[game.maid.elegance]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.charm|_9999"/>
-						<label>魅力</label>
+						<label>[game.maid.charm]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.inyoku|_9999"/>
-						<label>欲望</label>
+						<label>[game.maid.inyoku]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.mValue|_9999"/>
-						<label>M性</label>
+						<label>[game.maid.mValue]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.hentai|_9999"/>
-						<label>变态</label>
+						<label>[game.maid.hentai]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.housi|_9999"/>
-						<label>侍奉</label>
+						<label>[game.maid.housi]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.yotogiPlayCount|int32"/>
-						<label>夜伽次数</label>
+						<label>[game.maid.yotogiPlayCount]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.othersPlayCount|int32"/>
-						<label>接客次数</label>
+						<label>[game.maid.othersPlayCount]</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" bind-value="maid.param.sexual.mouth|rate"/>

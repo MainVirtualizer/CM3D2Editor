@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.1.0",
+	version: "1.1.1",
 
 	msgbox: {
 		title: '',
@@ -24,11 +24,10 @@ function updateMaterialSelect(obj) {
 }
 
 function updateMaterialize() {
+	$("input").change();
+	$("textarea").change().keydown();
+	updateMaterialSelect($('select'));
 	setTimeout(function() {
-		$("input").change();
-		$("textarea").change().keydown();
-		updateMaterialSelect($('select'));
-		$('.collapsible').collapsible();
 		$('ul.tabs').tabs();
 	}, 300);
 }
@@ -356,7 +355,7 @@ var util = {
 $(document).ready(function() {
 	rivets.bind($('body'), i18n, {
 		prefix: 'i18n',
-		templateDelimiters: '',
+		templateDelimiters: ['[', ']'],
 	});
 	rivets.bind($('body'), bindings, {
 		prefix: 'bind'
@@ -364,7 +363,58 @@ $(document).ready(function() {
 	$('select').material_select();
 });
 
-if (localStorage.version !== bindings.version) {
-	localStorage.version = bindings.version;
-	showMsgbox('CM3D2 Editor 已经更新到版本 ' + bindings.version, $('#updateHistory').text());
+
+function forEachKeys(obj, callback) {
+	var keys = Object.getOwnPropertyNames(obj);
+	for (var i = 0; i < keys.length; i++) {
+		if (obj.propertyIsEnumerable(keys[i])) {
+			callback(obj, keys[i], obj[keys[i]]);
+		}
+	}
+}
+
+function checkVersion() {
+	if (localStorage.version !== bindings.version) {
+		localStorage.version = bindings.version;
+		(function() {
+			var title = i18n.ui.updateNotice.replace('${version}', bindings.version);
+			var body = '';
+			forEachKeys(i18n.updateHistory, function(obj, key, value) {
+				body += key + '<br/>' + value.map(function(a) {
+					return '&emsp;&emsp;' + a + '<br/>';
+				});
+			});
+			showMsgbox(
+				i18n.ui.updateNotice.replace('${version}', bindings.version),
+				i18n.ui.updateHistoryTemplate.replace('${body}', body)
+			);
+		})();
+	}
+}
+
+function include(file, callback) {
+	var script = document.createElement('script');
+	script.src = file;
+	script.onload = function() {
+		callback && callback();
+	};
+	document.head.appendChild(script);
+	document.head.removeChild(script);
+}
+
+function switchLocale(locale, callback) {
+	var oldi18n = i18n;
+	include('i18n/' + locale + '.js', function() {
+		var newi18n = i18n;
+		i18n = oldi18n;
+		$.extend(oldi18n, newi18n);
+		callback && callback();
+	});
+}
+
+var locale = localStorage.locale || navigator.language || navigator.browserLanguage;
+if (locale.indexOf("zh") !== -1) {
+	switchLocale('zh', checkVersion);
+} else {
+	checkVersion();
 }
