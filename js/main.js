@@ -48,6 +48,9 @@ function openOpenDialog(callback, accept) {
 
 function createDataURL(data) {
 	var base64;
+	if (data instanceof ArrayBuffer) {
+		data = new Uint8Array(data);
+	}
 	if (data instanceof Uint8Array) {
 		base64 = data.toBase64();
 	} else {
