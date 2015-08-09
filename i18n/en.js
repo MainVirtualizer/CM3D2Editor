@@ -199,6 +199,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.1.2": ["Add IE 10 Support"],
 		"1.1.1": ["Add English Translation"],
 		"0.0.1-1.1.0": ["Basic Functionalities"]
 	}
