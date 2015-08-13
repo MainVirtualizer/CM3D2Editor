@@ -195,10 +195,13 @@ var i18n = {
 		allSkills: "Master All Skills For Current Maid",
 		allSkillsFinished: "Current maid now masters all skills",
 		allWork: "Master All Works For Current Maid",
-		allWorkFinished: "Current maid now masters all works"
+		allWorkFinished: "Current maid now masters all works",
+		masterPlayedSkills: "Master Played Skills For Selected Maid",
+		masterPlayedSkillsFinished: "Selected maid now masters all played skills",
 	},
 
 	updateHistory: {
+		"1.2.0": ["Utility Added: Master Only Played Skills For Selected Maid"],
 		"1.1.2": ["Add IE 10 Support"],
 		"1.1.1": ["Add English Translation"],
 		"0.0.1-1.1.0": ["Basic Functionalities"]

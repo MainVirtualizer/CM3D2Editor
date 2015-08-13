@@ -352,7 +352,21 @@ var util = {
 			}
 		}
 		Materialize.toast(i18n.util.allWorkFinished, 4000);
-	}
+	},
+	masterPlayedSkills: function() {
+		var data = bindings.maid.param.skillData;
+		var skillIndex = Object.getOwnPropertyNames(data);
+		for (var i = 0; i < skillIndex.length; i++) {
+			var idx = skillIndex[i];
+			if (data.propertyIsEnumerable(idx) && data[idx].playCount) {
+				data[idx].exp.currentExp = 0;
+				data[idx].exp.level = 3;
+				data[idx].exp.nextExp = 0;
+				data[idx].exp.totalExp = 300;
+			}
+		}
+		Materialize.toast(i18n.util.masterPlayedSkillsFinished, 4000);
+	},
 };
 
 $(document).ready(function() {

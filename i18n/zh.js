@@ -195,10 +195,13 @@ var i18n = {
 		allSkills: "当前女仆全部技能满级",
 		allSkillsFinished: "当前女仆的技能已全部解锁并升至满级",
 		allWork: "当前女仆全部工作满级",
-		allWorkFinished: "当前女仆的工作已升至满级"
+		allWorkFinished: "当前女仆的工作已升至满级",
+		masterPlayedSkills: "当前女仆进行过的技能全部满级",
+		masterPlayedSkillsFinished: "当前女仆进行过的技能已经全部满级",
 	},
 
 	updateHistory: {
+		"1.2.0": ["新增只有玩过的技能才满级的工具"],
 		"1.1.2": ["支持IE10"],
 		"1.1.1": ["修正部分翻译"],
 		"1.1.0": ["新增物品一键解锁", "新增奖杯一键解锁"],
