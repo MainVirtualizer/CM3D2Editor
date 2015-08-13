@@ -413,10 +413,10 @@ function include(file, callback) {
 	var script = document.createElement('script');
 	script.src = file;
 	script.onload = function() {
+		document.head.removeChild(script);
 		callback && callback();
 	};
 	document.head.appendChild(script);
-	document.head.removeChild(script);
 }
 
 function switchLocale(locale, callback) {
