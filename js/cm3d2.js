@@ -182,6 +182,8 @@ Uint8Array.fromBase64 = function(input) {
 };
 
 (function(exports) {
+	var suppressVersion;
+
 	function getKeys(obj) {
 		return Object.getOwnPropertyNames(obj).filter(function(name) {
 			return name !== '_rv';
@@ -190,7 +192,14 @@ Uint8Array.fromBase64 = function(input) {
 
 	function checkVersion(version) {
 		if (version > 103 || version < 101) {
-			throw new Error('Version ' + (version / 100) + ' is not supported');
+			if (suppressVersion === undefined) {
+				if (exports.confirm) {
+					suppressVersion = exports.confirm('Unsupported version. Continue?');
+				}
+			}
+			if (!suppressVersion) {
+				throw new Error('Version ' + (version / 100) + ' is not supported');
+			}
 		}
 	}
 
@@ -550,6 +559,8 @@ Uint8Array.fromBase64 = function(input) {
 	}
 
 	function parseSaveData(buffer) {
+		suppressVersion = undefined;
+
 		var reader = new BinaryReader(buffer);
 		if (reader.readString() !== 'CM3D2_SAVE') {
 			throw new Error('Expected CM3D2_SAVE');
