@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.2.0",
+	version: "1.2.1",
 
 	msgbox: {
 		title: '',

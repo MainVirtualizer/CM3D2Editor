@@ -201,6 +201,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.2.1": ["CM3D2 1.04 & 1.05 Tested"],
 		"1.2.0": ["Utility Added: Master Only Played Skills For Selected Maid"],
 		"1.1.2": ["Add IE 10 Support"],
 		"1.1.1": ["Add English Translation"],
