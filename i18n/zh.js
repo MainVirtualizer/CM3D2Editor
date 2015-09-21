@@ -200,9 +200,12 @@ var i18n = {
 		masterPlayedSkillsFinished: "当前女仆进行过的技能已经全部满级",
 		removeExGrpVIP: "移除交换、乱交、VIP经验",
 		removeExGrpVIPFinished: "交换、乱交、VIP经验均已移除",
+		removeModItems: "移除所有Mod物品",
+		removeModItemsFinished: "共移除${count}件Mod物品",
 	},
 
 	updateHistory: {
+		"1.4.0": ["新增移除所有Mod物品的工具", "<small>该工具能够解决移除Mod而导致游戏未响应的问题</small>"],
 		"1.3.0": ["CM3D2 1.09 测试通过", "新增移除交换、乱交和VIP经验的工具"],
 		"1.2.1": ["CM3D2 1.05 测试通过"],
 		"1.2.0": ["新增只有玩过的技能才满级的工具"],

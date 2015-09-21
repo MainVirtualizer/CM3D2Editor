@@ -200,9 +200,12 @@ var i18n = {
 		masterPlayedSkillsFinished: "Selected maid now masters all played skills",
 		removeExGrpVIP: "Remove Exchange, Group and VIP Experiences",
 		removeExGrpVIPFinished: "Exchange, group and VIP experiences removed",
+		removeModItems: "Remove All Mod Items",
+		removeModItemsFinished: "${count} mod item(s) removed",
 	},
 
 	updateHistory: {
+		"1.4.0": ["Utility Added: Remove All Mod Items", "<small>This can fix hanging of the game when mods are removed</small>"],
 		"1.3.0": ["CM3D2 1.09 Tested", "Utility Added: Remove Exchange, Group and VIP Experiences"],
 		"1.2.1": ["CM3D2 1.05 Tested"],
 		"1.2.0": ["Utility Added: Master Only Played Skills For Selected Maid"],

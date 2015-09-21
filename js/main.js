@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.3.0",
+	version: "1.4.0",
 
 	msgbox: {
 		title: '',
@@ -372,6 +372,19 @@ var util = {
 		bindings.maid.param.genericFlag.夜伽_カテゴリー_実行回数_交換 = 0;
 		bindings.maid.param.genericFlag._PlayedNightWorkVip = 0;
 		Materialize.toast(i18n.util.removeExGrpVIPFinished, 4000);
+	},
+	removeModItems: function() {
+		var maids = bindings.save.chrMgr.stockMaid;
+		var count = 0;
+		for (var i = 0; i < maids.length; i++) {
+			forEachKeys(maids[i].props, function(prop, key, value){
+				if(value.fileName.indexOf(".mod")!==-1){
+					count++;
+					delete prop[key];
+				}
+			});
+		}
+		Materialize.toast(i18n.util.removeModItemsFinished.replace(/\$\{count\}/g, count), 4000);
 	}
 };
 
