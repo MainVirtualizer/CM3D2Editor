@@ -405,7 +405,7 @@ function checkVersion() {
 			forEachKeys(i18n.updateHistory, function(obj, key, value) {
 				body += key + '<br/>' + value.map(function(a) {
 					return '&emsp;&emsp;' + a + '<br/>';
-				});
+				}).join('');
 			});
 			showMsgbox(
 				i18n.ui.updateNotice.replace('${version}', bindings.version),
