@@ -198,10 +198,13 @@ var i18n = {
 		allWorkFinished: "当前女仆的工作已升至满级",
 		masterPlayedSkills: "当前女仆进行过的技能全部满级",
 		masterPlayedSkillsFinished: "当前女仆进行过的技能已经全部满级",
+		removeExGrpVIP: "移除交换、乱交、VIP经验",
+		removeExGrpVIPFinished: "交换、乱交、VIP经验均已移除",
 	},
 
 	updateHistory: {
-		"1.2.1": ["CM3D2 1.04 & 1.05 测试通过"],
+		"1.3.0": ["CM3D2 1.09 测试通过", "新增移除交换、乱交和VIP经验的工具"],
+		"1.2.1": ["CM3D2 1.05 测试通过"],
 		"1.2.0": ["新增只有玩过的技能才满级的工具"],
 		"1.1.2": ["支持IE10"],
 		"1.1.1": ["修正部分翻译"],

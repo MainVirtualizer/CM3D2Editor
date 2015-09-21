@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.2.1",
+	version: "1.3.0",
 
 	msgbox: {
 		title: '',
@@ -367,6 +367,12 @@ var util = {
 		}
 		Materialize.toast(i18n.util.masterPlayedSkillsFinished, 4000);
 	},
+	removeExGrpVIP: function() {
+		bindings.maid.param.genericFlag.夜伽_カテゴリー_実行回数_乱交 = 0;
+		bindings.maid.param.genericFlag.夜伽_カテゴリー_実行回数_交換 = 0;
+		bindings.maid.param.genericFlag._PlayedNightWorkVip = 0;
+		Materialize.toast(i18n.util.removeExGrpVIPFinished, 4000);
+	}
 };
 
 $(document).ready(function() {
