@@ -205,6 +205,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.4.1": ["CM3D2 1.10 Tested", "New DLC Yotogi Class Supported"],
 		"1.4.0": ["Utility Added: Remove All Mod Items", "<small>This can fix hanging of the game when mods are removed</small>"],
 		"1.3.0": ["CM3D2 1.09 Tested", "Utility Added: Remove Exchange, Group and VIP Experiences"],
 		"1.2.1": ["CM3D2 1.05 Tested"],

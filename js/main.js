@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.4.0",
+	version: "1.4.1",
 
 	msgbox: {
 		title: '',
@@ -301,7 +301,8 @@ var util = {
 	},
 	yotogiClassMax: function() {
 		var data = bindings.maid.param.yotogiClassData;
-		for (var i = 0; i < 7; i++) {
+		var numOfYotogi = bindings.save.version < 110 ? 7 : 8;
+		for (var i = 0; i < numOfYotogi; i++) {
 			data[i].have = true;
 			data[i].exp.currentExp = 0;
 			data[i].exp.level = 10;
