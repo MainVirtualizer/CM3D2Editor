@@ -204,7 +204,11 @@ rivets.adapters['/'] = {
 	observe: function(obj, keypath, callback) {},
 	unobserve: function(obj, keypath, callback) {},
 	get: function(obj, keypath) {
-		return JSON.parse(localStorage[keypath]);
+		try {
+			return JSON.parse(localStorage[keypath]);
+		} catch (e) {
+			return undefined;
+		}
 	},
 	set: function(obj, keypath, value) {
 		localStorage[keypath] = JSON.stringify(value);
