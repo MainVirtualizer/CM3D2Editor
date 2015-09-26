@@ -43,6 +43,7 @@
 			<li><a id="button-loadjson" i18n-text="ui.loadjson"></a></li>
 			<li><a id="button-savejson" bind-show="save" i18n-text="ui.savejson"></a></li>
 			<li i18n-show="createurl"><a id="button-createurl" i18n-text="createurl" bind-show="save"></a></li>
+			<li><a id="button-settings" i18n-text="ui.setting"></a></li>
 			<li><a class="dropdown-button" data-activates="nav-utilities" i18n-text="utility" bind-show="save"></a></li>
 			</ul>
 		</div>
@@ -234,6 +235,19 @@
 			<div class="input-field">
 				<input type="checkbox" id="propensity-drink" bind-checked="maid.param.propensity#8"/>
 				<label for="propensity-drink" i18n-text="game.propensity.drink"></label>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class="modal-action modal-close btn-flat" i18n-text="ui.close"></a>
+		</div>
+	</div>
+
+	<div id="settings" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h4 i18n-text="setting.title"></h4>
+			<div class="input-field">
+				<input type="checkbox" id="setting-ytgc001" bind-checked="/ytgc001"/>
+				<label for="setting-ytgc001" i18n-text="setting.ytgc001"></label>
 			</div>
 		</div>
 		<div class="modal-footer">

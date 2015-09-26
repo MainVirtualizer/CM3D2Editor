@@ -170,6 +170,7 @@ var i18n = {
 		save: "保存",
 		loadjson: "载入JSON",
 		savejson: "保存JSON",
+		setting: "设置",
 
 		close: "关闭",
 
@@ -179,6 +180,11 @@ var i18n = {
 
 		updateNotice: "CM3D2 Editor 已经更新到版本 ${version}",
 		updateHistoryTemplate: "更新历史<br/>${body}",
+	},
+
+	setting: {
+		title: "设置",
+		ytgc001: "我已安装夜咖等级技能包 Vol.1",
 	},
 
 	util: {
@@ -205,6 +211,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.4.2": ["支持新DLC夜咖技能", "增加设置界面选择已安装的DLC"],
 		"1.4.1": ["CM3D2 1.10 测试通过", "支持新DLC夜咖等级"],
 		"1.4.0": ["新增移除所有Mod物品的工具", "<small>该工具能够解决移除Mod而导致游戏未响应的问题</small>"],
 		"1.3.0": ["CM3D2 1.09 测试通过", "新增移除交换、乱交和VIP经验的工具"],

@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.4.1",
+	version: "1.4.2",
 
 	msgbox: {
 		title: '',
@@ -106,6 +106,11 @@ $('#button-createurl').click(function() {
 	newWindow.document.body.innerHTML = '如果安装了迅雷 请用右键另存为<br/><a download="' + openedFileName + '.save" href="' + createDataURL(writeSaveData(bindings.save)) + '">CM3D2 Save文件格式</a><br/>' + '<a download="' + openedFileName + '.json" href="' + createDataURL(JSON.stringify(bindings.save, null, 2)) + '">JSON文件格式</a>';
 });
 
+$('#button-settings').click(function() {
+	$('#settings').openModal();
+});
+
+
 function loadJSON(model) {
 	bindings.save = model;
 
@@ -192,6 +197,17 @@ rivets.adapters['#'] = {
 				obj.splice(idx, 1);
 			}
 		}
+	}
+}
+
+rivets.adapters['/'] = {
+	observe: function(obj, keypath, callback) {},
+	unobserve: function(obj, keypath, callback) {},
+	get: function(obj, keypath) {
+		return JSON.parse(localStorage[keypath]);
+	},
+	set: function(obj, keypath, value) {
+		localStorage[keypath] = JSON.stringify(value);
 	}
 }
 
@@ -301,7 +317,7 @@ var util = {
 	},
 	yotogiClassMax: function() {
 		var data = bindings.maid.param.yotogiClassData;
-		var numOfYotogi = bindings.save.version < 110 ? 7 : 8;
+		var numOfYotogi = localStorage.ytgc001 === "true" ? 8 : 7;
 		for (var i = 0; i < numOfYotogi; i++) {
 			data[i].have = true;
 			data[i].exp.currentExp = 0;
@@ -314,6 +330,9 @@ var util = {
 	allSkills: function() {
 		var data = bindings.maid.param.skillData;
 		var skillIndex = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 345, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680, 690, 700, 710, 720, 730, 740, 750, 760, 770, 780, 790, 800, 810, 820, 830, 840, 850, 860, 870, 880, 890, 900, 910, 920, 930, 940, 950, 960, 970, 980, 990, 1000];
+		if (localStorage.ytgc001 === "true") {
+			skillIndex.push(1040, 1050, 1060, 1070, 1080, 1090);
+		}
 		for (var i = 0; i < skillIndex.length; i++) {
 			var idx = skillIndex[i];
 			if (data[idx]) {
@@ -378,8 +397,8 @@ var util = {
 		var maids = bindings.save.chrMgr.stockMaid;
 		var count = 0;
 		for (var i = 0; i < maids.length; i++) {
-			forEachKeys(maids[i].props, function(prop, key, value){
-				if(value.fileName.indexOf(".mod")!==-1){
+			forEachKeys(maids[i].props, function(prop, key, value) {
+				if (value.fileName.indexOf(".mod") !== -1) {
 					count++;
 					delete prop[key];
 				}
