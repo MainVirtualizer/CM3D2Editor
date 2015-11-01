@@ -186,6 +186,7 @@ var i18n = {
 		title: "Settings",
 		ytgc001: "I have installed Yotogi Class Skills Vol.1",
 		cbp: "I have installed Chu-B Lip Special Version",
+		ytgc002: "I have installed Yotogi Class Skills Vol.2",
 	},
 
 	util: {
@@ -212,6 +213,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.4.4": ["Yotogi Skills Vol.2 Supported"],
 		"1.4.3": ["Chu-B Skills Supported"],
 		"1.4.2": ["New DLC Yotogi Skills Supported", "Enable DLC Features in Setting"],
 		"1.4.1": ["CM3D2 1.10 Tested", "New DLC Yotogi Class Supported"],

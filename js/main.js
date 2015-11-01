@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.4.3",
+	version: "1.4.4",
 
 	msgbox: {
 		title: '',
@@ -321,7 +321,9 @@ var util = {
 	},
 	yotogiClassMax: function() {
 		var data = bindings.maid.param.yotogiClassData;
-		var numOfYotogi = localStorage.ytgc001 === "true" ? 8 : 7;
+		var classes = [0, 1, 2, 3, 4, 5, 6];
+		if (localStorage.ytgc001 === "true") classes.push(7);
+		if (localStorage.ytgc002 === "true") classes.push(8);
 		for (var i = 0; i < numOfYotogi; i++) {
 			data[i].have = true;
 			data[i].exp.currentExp = 0;
@@ -336,6 +338,9 @@ var util = {
 		var skillIndex = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 345, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670, 680, 690, 700, 710, 720, 730, 740, 750, 760, 770, 780, 790, 800, 810, 820, 830, 840, 850, 860, 870, 880, 890, 900, 910, 920, 930, 940, 950, 960, 970, 980, 990, 1000];
 		if (localStorage.ytgc001 === "true") {
 			skillIndex.push(1040, 1050, 1060, 1070, 1080, 1090, 1100, 1110);
+		}
+		if (localStorage.ytgc002 === "true") {
+			skillIndex.push(1120, 1130, 1140, 1150, 1160, 1170, 1180, 1190);
 		}
 		if (localStorage.cbp === "true") {
 			skillIndex.push(15, 25, 35, 55, 75, 95, 115, 135, 155, 175, 195, 225, 235, 245, 255, 265, 275, 285, 295, 305, 335, 347, 365, 375, 395, 405, 415, 425, 435, 445, 475, 485, 505, 515, 535, 545, 555, 575, 585, 595, 625, 645, 655, 665, 675, 695, 705, 715, 725, 755, 765, 1010, 1020);
