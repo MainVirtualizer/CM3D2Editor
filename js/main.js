@@ -324,12 +324,13 @@ var util = {
 		var classes = [0, 1, 2, 3, 4, 5, 6];
 		if (localStorage.ytgc001 === "true") classes.push(7);
 		if (localStorage.ytgc002 === "true") classes.push(8);
-		for (var i = 0; i < numOfYotogi; i++) {
-			data[i].have = true;
-			data[i].exp.currentExp = 0;
-			data[i].exp.level = 10;
-			data[i].exp.nextExp = 0;
-			data[i].exp.totalExp = 4530;
+		for (var i = 0; i < classes.length; i++) {
+			var idx = classes[i];
+			data[idx].have = true;
+			data[idx].exp.currentExp = 0;
+			data[idx].exp.level = 10;
+			data[idx].exp.nextExp = 0;
+			data[idx].exp.totalExp = 4530;
 		}
 		Materialize.toast(i18n.util.yotogiClassMaxFinished, 4000);
 	},
