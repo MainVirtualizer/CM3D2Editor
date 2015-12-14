@@ -213,6 +213,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.4.5": ["CM3D2 1.19 Supported"],
 		"1.4.4": ["Yotogi Skills Vol.2 Supported"],
 		"1.4.3": ["Chu-B Skills Supported"],
 		"1.4.2": ["New DLC Yotogi Skills Supported", "Enable DLC Features in Setting"],
