@@ -187,6 +187,7 @@ var i18n = {
 		ytgc001: "I have installed Yotogi Class Skills Vol.1",
 		cbp: "I have installed Chu-B Lip Special Version",
 		ytgc002: "I have installed Yotogi Class Skills Vol.2",
+		ytgc003: "I have installed Yotogi Class Skills Vol.3",
 	},
 
 	util: {
@@ -213,6 +214,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.5.0": ["Yotogi Skills Vol.3 Supported"],
 		"1.4.5": ["CM3D2 1.19 Supported"],
 		"1.4.4": ["Yotogi Skills Vol.2 Supported"],
 		"1.4.3": ["Chu-B Skills Supported"],

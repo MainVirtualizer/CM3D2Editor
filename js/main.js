@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.4.5",
+	version: "1.5.0",
 
 	msgbox: {
 		title: '',
@@ -324,6 +324,7 @@ var util = {
 		var classes = [0, 1, 2, 3, 4, 5, 6];
 		if (localStorage.ytgc001 === "true") classes.push(7);
 		if (localStorage.ytgc002 === "true") classes.push(8);
+		if (localStorage.ytgc003 === "true") classes.push(9);
 		for (var i = 0; i < classes.length; i++) {
 			var idx = classes[i];
 			data[idx].have = true;
@@ -342,6 +343,9 @@ var util = {
 		}
 		if (localStorage.ytgc002 === "true") {
 			skillIndex.push(1120, 1130, 1140, 1150, 1160, 1170, 1180, 1190);
+		}
+		if(localStorage.ytgc003 === "true") {
+			skillIndex.push(1200, 1210, 1220, 1230, 1240, 1250, 1260, 1270, 1280);
 		}
 		if (localStorage.cbp === "true") {
 			skillIndex.push(15, 25, 35, 55, 75, 95, 115, 135, 155, 175, 195, 225, 235, 245, 255, 265, 275, 285, 295, 305, 335, 347, 365, 375, 395, 405, 415, 425, 435, 445, 475, 485, 505, 515, 535, 545, 555, 575, 585, 595, 625, 645, 655, 665, 675, 695, 705, 715, 725, 755, 765, 1010, 1020);
