@@ -89,7 +89,8 @@ var i18n = {
 			personality: "Personality",
 			p_innocent: "Innocent",
 			p_cool: "Cool",
-			p_proud: "Proud",
+			p_proud: "Tsundere",
+			p_yandere: "Yandere",
 
 			initSeikenken: "Initial Sex Experience",
 			seikenken: "Sex Experience",
@@ -188,6 +189,7 @@ var i18n = {
 		cbp: "I have installed Chu-B Lip Special Version",
 		ytgc002: "I have installed Yotogi Class Skills Vol.2",
 		ytgc003: "I have installed Yotogi Class Skills Vol.3",
+		yandere: "I have installed Yandere Personality Pack",
 	},
 
 	util: {
@@ -214,6 +216,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.5.1": ["Yandere Personality Pack Supported"],
 		"1.5.0": ["Yotogi Skills Vol.3 Supported"],
 		"1.4.5": ["CM3D2 1.19 Supported"],
 		"1.4.4": ["Yotogi Skills Vol.2 Supported"],

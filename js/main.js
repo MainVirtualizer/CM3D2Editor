@@ -4,7 +4,7 @@ var openedFileName;
 var bindings = {
 	showMaidUtil: false,
 
-	version: "1.5.0",
+	version: "1.5.1",
 
 	msgbox: {
 		title: '',
@@ -200,9 +200,16 @@ rivets.adapters['#'] = {
 	}
 }
 
+var localStorageChangeCallback = {};
 rivets.adapters['/'] = {
-	observe: function(obj, keypath, callback) {},
-	unobserve: function(obj, keypath, callback) {},
+	observe: function(obj, keypath, callback) {
+		localStorageChangeCallback[keypath] = localStorageChangeCallback[keypath] || [];
+		localStorageChangeCallback[keypath].push(callback);
+	},
+	unobserve: function(obj, keypath, callback) {
+		var obj = localStorageChangeCallback[keypath];
+		if (obj) obj.splice(obj.indexOf(callback), 1);
+	},
 	get: function(obj, keypath) {
 		try {
 			return JSON.parse(localStorage[keypath]);
@@ -212,6 +219,10 @@ rivets.adapters['/'] = {
 	},
 	set: function(obj, keypath, value) {
 		localStorage[keypath] = JSON.stringify(value);
+		var arrays = localStorageChangeCallback[keypath];
+		if (arrays) arrays.forEach(function(i) {
+			i();
+		});
 	}
 }
 
@@ -344,7 +355,7 @@ var util = {
 		if (localStorage.ytgc002 === "true") {
 			skillIndex.push(1120, 1130, 1140, 1150, 1160, 1170, 1180, 1190);
 		}
-		if(localStorage.ytgc003 === "true") {
+		if (localStorage.ytgc003 === "true") {
 			skillIndex.push(1200, 1210, 1220, 1230, 1240, 1250, 1260, 1270, 1280);
 		}
 		if (localStorage.cbp === "true") {

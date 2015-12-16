@@ -261,6 +261,10 @@
 				<input type="checkbox" id="setting-ytgc003" bind-checked="/ytgc003"/>
 				<label for="setting-ytgc003" i18n-text="setting.ytgc003"></label>
 			</div>
+			<div class="input-field">
+				<input type="checkbox" id="setting-yandere" bind-checked="/yandere"/>
+				<label for="setting-yandere" i18n-text="setting.yandere"></label>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a class="modal-action modal-close btn-flat" i18n-text="ui.close"></a>
@@ -397,11 +401,20 @@
 						</select>
 						<label>[game.maid.contractType]</label>
 					</div>
-					<div class="input-field col s3">
+					<div class="input-field col s3" bind-hide="/yandere">
 						<select bind-value="maid.param.personal|int32">
 							<option value="0">[game.maid.p_innocent]</option>
 							<option value="1">[game.maid.p_cool]</option>
 							<option value="2">[game.maid.p_proud]</option>
+						</select>
+						<label>[game.maid.personality]</label>
+					</div>
+					<div class="input-field col s3" bind-show="/yandere">
+						<select bind-value="maid.param.personal|int32">
+							<option value="0">[game.maid.p_innocent]</option>
+							<option value="1">[game.maid.p_cool]</option>
+							<option value="2">[game.maid.p_proud]</option>
+							<option value="3">[game.maid.p_yandere]</option>
 						</select>
 						<label>[game.maid.personality]</label>
 					</div>

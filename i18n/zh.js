@@ -89,7 +89,8 @@ var i18n = {
 			personality: "性格",
 			p_innocent: "天真",
 			p_cool: "冷酷",
-			p_proud: "骄傲",
+			p_proud: "傲娇",
+			p_yandere: "病骄",
 
 			initSeikenken: "初始性经验",
 			seikenken: "性经验",
@@ -188,6 +189,7 @@ var i18n = {
 		cbp: "我已安装 Chu-B Lip 特别版",
 		ytgc002: "我已安装夜咖等级技能包 Vol.2",
 		ytgc003: "我已安装夜咖等级技能包 Vol.3",
+		yandere: "我已安装病娇性格扩展包",
 	},
 
 	util: {
@@ -214,6 +216,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.5.1": ["支持病娇性格扩展包"],
 		"1.5.0": ["支持夜咖DLC Vol.3技能"],
 		"1.4.5": ["支持 CM3D2 1.19"],
 		"1.4.4": ["支持夜咖DLC Vol.2技能"],
