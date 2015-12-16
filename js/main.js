@@ -499,6 +499,8 @@ function switchLocale(locale, callback) {
 var locale = localStorage.locale || navigator.language || navigator.browserLanguage;
 if (locale.indexOf("zh") !== -1) {
 	switchLocale('zh', checkVersion);
+} else if (locale.indexOf("ja") !== -1) {
+	checkVersion();
 } else {
 	checkVersion();
 }
