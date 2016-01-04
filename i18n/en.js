@@ -190,6 +190,7 @@ var i18n = {
 		ytgc002: "I have installed Yotogi Class Skills Vol.2",
 		ytgc003: "I have installed Yotogi Class Skills Vol.3",
 		yandere: "I have installed Yandere Personality Pack",
+		dkg_winter: "I have installed Denkigai 2015 Winter"
 	},
 
 	util: {
@@ -216,6 +217,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.5.2": ["Denkigai 2015 Winter Supported"],
 		"1.5.1": ["Yandere Personality Pack Supported"],
 		"1.5.0": ["Yotogi Skills Vol.3 Supported"],
 		"1.4.5": ["CM3D2 1.19 Supported"],
