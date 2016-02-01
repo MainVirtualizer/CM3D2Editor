@@ -190,7 +190,12 @@ var i18n = {
 		ytgc002: "I have installed Yotogi Class Skills Vol.2",
 		ytgc003: "I have installed Yotogi Class Skills Vol.3",
 		yandere: "I have installed Yandere Personality Pack",
+<<<<<<< Updated upstream
 		dkg_winter: "I have installed Denkigai 2015 Winter"
+=======
+		dkg_winter: "I have installed Denkigai 2015 Winter",
+		plus: "I have installed Plus Pack"
+>>>>>>> Stashed changes
 	},
 
 	util: {
@@ -217,6 +222,10 @@ var i18n = {
 	},
 
 	updateHistory: {
+<<<<<<< Updated upstream
+=======
+		"1.6.0": ["CM3D2 1.22 Supported", "Plus Pack Supported"],
+>>>>>>> Stashed changes
 		"1.5.2": ["Denkigai 2015 Winter Supported"],
 		"1.5.1": ["Yandere Personality Pack Supported"],
 		"1.5.0": ["Yotogi Skills Vol.3 Supported"],

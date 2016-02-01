@@ -190,7 +190,12 @@ var i18n = {
 		ytgc002: "我已安装夜咖等级技能包 Vol.2",
 		ytgc003: "我已安装夜咖等级技能包 Vol.3",
 		yandere: "我已安装病娇性格扩展包",
+<<<<<<< Updated upstream
 		dkg_winter: "我已安装电气改2015冬扩展包"
+=======
+		dkg_winter: "我已安装电气改2015冬扩展包",
+		plus: "我已安装增强扩展包"
+>>>>>>> Stashed changes
 	},
 
 	util: {
@@ -217,6 +222,10 @@ var i18n = {
 	},
 
 	updateHistory: {
+<<<<<<< Updated upstream
+=======
+		"1.6.0": ["CM3D2 1.22 测试通过", "支持增强扩展包"],
+>>>>>>> Stashed changes
 		"1.5.2": ["支持电气改2015冬扩展包"],
 		"1.5.1": ["支持病娇性格扩展包"],
 		"1.5.0": ["支持夜咖DLC Vol.3技能"],
