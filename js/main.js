@@ -3,13 +3,7 @@
 var openedFileName;
 var bindings = {
 	showMaidUtil: false,
-
-<<<<<<< Updated upstream
-	version: "1.5.2",
-=======
 	version: "1.6.0",
->>>>>>> Stashed changes
-
 	msgbox: {
 		title: '',
 		text: ''
@@ -341,10 +335,7 @@ var util = {
 		if (localStorage.ytgc002 === "true") classes.push(8);
 		if (localStorage.ytgc003 === "true") classes.push(9);
 		if (localStorage.dkg_winter === "true") classes.push(10);
-<<<<<<< Updated upstream
-=======
 		if (localStorage.plus === "true") classes.push(11, 12, 13, 14);
->>>>>>> Stashed changes
 		for (var i = 0; i < classes.length; i++) {
 			var idx = classes[i];
 			data[idx].have = true;
@@ -373,14 +364,11 @@ var util = {
 		if (localStorage.dkg_winter === 'true') {
 			skillIndex.push(1290, 1300, 1310, 1320);
 		}
-<<<<<<< Updated upstream
-=======
 		if (localStorage.plus === 'true') {
 			for (var i = 1340; i <= 1510; i += 10) {
 				skillIndex.push(i);
 			}
 		}
->>>>>>> Stashed changes
 		for (var i = 0; i < skillIndex.length; i++) {
 			var idx = skillIndex[i];
 			if (data[idx]) {
