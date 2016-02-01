@@ -409,6 +409,10 @@
 						</select>
 						<label>[game.maid.contractType]</label>
 					</div>
+					<div class="input-field col s3" bind-show="/plus">
+						<input type="checkbox" id="param-isRented" bind-checked="maid.param.isRentalMaid"/>
+						<label for="param-isRented" i18n-text="game.maid.isRented"></label>
+					</div>
 					<div class="input-field col s3" bind-hide="/yandere">
 						<select bind-value="maid.param.personal|int32">
 							<option value="0">[game.maid.p_innocent]</option>

@@ -86,6 +86,8 @@ var i18n = {
 			freeMaid: "Free Maid",
 			privateMaid: "Private Maid",
 
+			isRented: "Rented Maid",
+
 			personality: "Personality",
 			p_innocent: "Innocent",
 			p_cool: "Cool",

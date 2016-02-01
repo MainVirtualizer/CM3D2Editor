@@ -86,6 +86,8 @@ var i18n = {
 			freeMaid: "自由女仆",
 			privateMaid: "专属女仆",
 
+			isRented: "租借女仆",
+
 			personality: "性格",
 			p_innocent: "天真",
 			p_cool: "冷酷",
