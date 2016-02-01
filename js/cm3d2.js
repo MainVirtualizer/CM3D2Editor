@@ -966,8 +966,8 @@ Uint8Array.fromBase64 = function(input) {
 				var flagKeys = getKeys(data.genericFlag);
 				writer.writeInt32(flagKeys.length);
 				for (var j = 0; j < flagKeys.length; j++) {
-					writer.writeString(flagKeys[i]);
-					writer.writeInt32(data.genericFlag[flagKeys[i]]);
+					writer.writeString(flagKeys[j]);
+					writer.writeInt32(data.genericFlag[flagKeys[j]]);
 				}
 			}
 		}
