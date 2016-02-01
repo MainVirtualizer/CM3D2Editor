@@ -563,7 +563,7 @@ Uint8Array.fromBase64 = function(input) {
 				};
 				ret.rentalMaidBackupDataDic[key] = data;
 
-				for (var j = reader.readInt32(); i > 0; i--) {
+				for (var j = reader.readInt32(); j > 0; j--) {
 					data.genericFlag[reader.readString()] = reader.readInt32();
 				}
 			}
@@ -965,7 +965,7 @@ Uint8Array.fromBase64 = function(input) {
 
 				var flagKeys = getKeys(data.genericFlag);
 				writer.writeInt32(flagKeys.length);
-				for (var j = 0; j < flagKeys.length; i++) {
+				for (var j = 0; j < flagKeys.length; j++) {
 					writer.writeString(flagKeys[i]);
 					writer.writeInt32(data.genericFlag[flagKeys[i]]);
 				}
