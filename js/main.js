@@ -3,7 +3,7 @@
 var openedFileName;
 var bindings = {
 	showMaidUtil: false,
-	version: "1.6.0",
+	version: "1.6.1",
 	msgbox: {
 		title: '',
 		text: ''
@@ -441,6 +441,12 @@ var util = {
 			});
 		}
 		Materialize.toast(i18n.util.removeModItemsFinished.replace(/\$\{count\}/g, count), 4000);
+	},
+	finishAllVip: function() {
+		forEachKeys(bindings.save.chrMgr.playerParam.nightWorksStateDic, function(prop, key, value) {
+			value.finish = true;
+		});
+		Materialize.toast(i18n.util.finishAllVipDone, 4000);
 	}
 };
 

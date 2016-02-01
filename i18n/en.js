@@ -217,9 +217,12 @@ var i18n = {
 		removeExGrpVIPFinished: "Exchange, group and VIP experiences removed",
 		removeModItems: "Remove All Mod Items",
 		removeModItemsFinished: "${count} mod item(s) removed",
+		finishAllVip: "Mark All VIP Events As Finished",
+		finishAllVipDone: "All VIP events are marked as finished"
 	},
 
 	updateHistory: {
+		"1.6.1": ["Utility Added: Mark All VIP Events As Finished", "<small>So you can replay the event.</small>"],
 		"1.6.0": ["CM3D2 1.22 Supported", "Plus Pack Supported"],
 		"1.5.2": ["Denkigai 2015 Winter Supported"],
 		"1.5.1": ["Yandere Personality Pack Supported"],

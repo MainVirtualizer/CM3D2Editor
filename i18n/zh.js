@@ -217,9 +217,12 @@ var i18n = {
 		removeExGrpVIPFinished: "交换、乱交、VIP经验均已移除",
 		removeModItems: "移除所有Mod物品",
 		removeModItemsFinished: "共移除${count}件Mod物品",
+		finishAllVip: "标记所有VIP事件为已完成",
+		finishAllVipDone: "所有VIP事件均已被标记成已完成"
 	},
 
 	updateHistory: {
+		"1.6.1": ["增加标记所有VIP事件为已完成的功能", "<small>这样你就能进行事件回放</small>"],
 		"1.6.0": ["CM3D2 1.22 测试通过", "支持增强扩展包"],
 		"1.5.2": ["支持电气改2015冬扩展包"],
 		"1.5.1": ["支持病娇性格扩展包"],
