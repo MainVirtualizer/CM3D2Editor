@@ -504,7 +504,7 @@ Uint8Array.fromBase64 = function(input) {
 			haveTrophyList: [],
 			maidClassOpenFlag: [],
 			yotogiClassOpenFlag: [],
-			rentalMaidBackupDataDic: {},
+			BackupDataDic: {},
 		};
 
 		for (var i = 0; i < 6; i++) {
@@ -959,15 +959,15 @@ Uint8Array.fromBase64 = function(input) {
 			writer.writeInt32(keys.length);
 			for (var i = 0; i < keys.length; i++) {
 				writer.writeString(keys[i]);
-				var data = data.rentalMaidBackupDataDic[keys[i]];
-				writer.writeString(data.name);
-				writer.writeInt32(data.seikeiken);
+				var data2 = data.rentalMaidBackupDataDic[keys[i]];
+				writer.writeString(data2.name);
+				writer.writeInt32(data2.seikeiken);
 
-				var flagKeys = getKeys(data.genericFlag);
+				var flagKeys = getKeys(data2.genericFlag);
 				writer.writeInt32(flagKeys.length);
 				for (var j = 0; j < flagKeys.length; j++) {
 					writer.writeString(flagKeys[j]);
-					writer.writeInt32(data.genericFlag[flagKeys[j]]);
+					writer.writeInt32(data2.genericFlag[flagKeys[j]]);
 				}
 			}
 		}
