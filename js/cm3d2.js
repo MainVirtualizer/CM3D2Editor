@@ -504,7 +504,7 @@ Uint8Array.fromBase64 = function(input) {
 			haveTrophyList: [],
 			maidClassOpenFlag: [],
 			yotogiClassOpenFlag: [],
-			BackupDataDic: {},
+			rentalMaidBackupDataDic: {},
 		};
 
 		for (var i = 0; i < 6; i++) {
