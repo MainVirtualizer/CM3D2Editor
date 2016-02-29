@@ -3,7 +3,7 @@
 var openedFileName;
 var bindings = {
 	showMaidUtil: false,
-	version: "1.6.1",
+	version: "1.6.2",
 	msgbox: {
 		title: '',
 		text: ''
@@ -336,6 +336,7 @@ var util = {
 		if (localStorage.ytgc003 === "true") classes.push(9);
 		if (localStorage.dkg_winter === "true") classes.push(10);
 		if (localStorage.plus === "true") classes.push(11, 12, 13, 14);
+		if (localStorage.ytgc004 === "true") classes.push(15);
 		for (var i = 0; i < classes.length; i++) {
 			var idx = classes[i];
 			data[idx].have = true;
@@ -366,6 +367,11 @@ var util = {
 		}
 		if (localStorage.plus === 'true') {
 			for (var i = 1340; i <= 1510; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.ytgc004 === 'true') {
+			for (var i = 1520; i <= 1590; i += 10) {
 				skillIndex.push(i);
 			}
 		}

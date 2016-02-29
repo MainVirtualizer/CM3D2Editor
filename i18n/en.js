@@ -193,7 +193,8 @@ var i18n = {
 		ytgc003: "I have installed Yotogi Class Skills Vol.3",
 		yandere: "I have installed Yandere Personality Pack",
 		dkg_winter: "I have installed Denkigai 2015 Winter",
-		plus: "I have installed Plus Pack"
+		plus: "I have installed Plus Pack",
+		ytgc004: "I have installed Yotogi Class Skills Vol.4",
 	},
 
 	util: {
@@ -222,6 +223,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.6.2": ["CM3D2 1.26 Supported", "Yotogi Skills Vol.4 Supported"],
 		"1.6.1": ["Utility Added: Mark All VIP Events As Finished", "<small>So you can replay the event.</small>"],
 		"1.6.0": ["CM3D2 1.22 Supported", "Plus Pack Supported"],
 		"1.5.2": ["Denkigai 2015 Winter Supported"],
