@@ -382,6 +382,9 @@ var util = {
 				skillIndex.push(i);
 			}
 		}
+		if (localStorage.oneechan === 'true') {
+			skillIndex.push(1690);
+		}
 		for (var i = 0; i < skillIndex.length; i++) {
 			var idx = skillIndex[i];
 			if (data[idx]) {
