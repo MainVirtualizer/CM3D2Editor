@@ -184,6 +184,9 @@ var i18n = {
 
 		updateNotice: "CM3D2 Editor is updated to version ${version}",
 		updateHistoryTemplate: "Update History<br/>${body}",
+
+		aboutTitle: "About",
+		aboutTemplate: "Author: MainVirtualizer<br/>GitHub Repo: <a href=\"https://github.com/MainVirtualizer/CM3D2Editor\">https://github.com/MainVirtualizer/CM3D2Editor</a><br/>Report Issues: <a href=\"https://github.com/MainVirtualizer/CM3D2Editor/issues\">https://github.com/MainVirtualizer/CM3D2Editor/issues</a><br/><br/>${history}",
 	},
 
 	setting: {
@@ -194,6 +197,7 @@ var i18n = {
 		ytgc003: "I have installed Yotogi Class Skills Vol.3",
 		yandere: "I have installed Yandere Personality Pack",
 		dkg_winter: "I have installed Denkigai 2015 Winter",
+		dkg_winter_panties: "I have installed Denkigai 2015 Winter Panties",
 		plus: "I have installed Plus Pack",
 		ytgc004: "I have installed Yotogi Class Skills Vol.4",
 		ytgc005: "I have installed Yotogi Class Skills Vol.5",
@@ -226,7 +230,7 @@ var i18n = {
 	},
 
 	updateHistory: {
-		"1.7.0 alpha": ["One-chan Personality Pack Supported", "<small>As the author did not get the DLC yet, this might not work as exepcted. Report issues <a href=\"https://github.com/MainVirtualizer/CM3D2Editor/issues\">here</a>.</small>"],
+		"1.7.0": ["CM3D2 1.30 Tested", "One-chan Personality Pack Supported", "Denkigai 2015 Winter Panties Supported"],
 		"1.6.3": ["CM3D2 1.27 Tested", "Yotogi Skills Vol.5 Supported"],
 		"1.6.2": ["CM3D2 1.26 Tested", "Yotogi Skills Vol.4 Supported"],
 		"1.6.1": ["Utility Added: Mark All VIP Events As Finished", "<small>So you can replay the event.</small>"],

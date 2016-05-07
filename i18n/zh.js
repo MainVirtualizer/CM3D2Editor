@@ -184,6 +184,9 @@ var i18n = {
 
 		updateNotice: "CM3D2 Editor 已经更新到版本 ${version}",
 		updateHistoryTemplate: "更新历史<br/>${body}",
+
+		aboutTitle: "关于",
+		aboutTemplate: "作者：主可视化引擎（MainVirtualizer）<br/>GitHub仓库：<a href=\"https://github.com/MainVirtualizer/CM3D2Editor\">https://github.com/MainVirtualizer/CM3D2Editor</a><br/>问题反馈：<a href=\"https://github.com/MainVirtualizer/CM3D2Editor/issues\">https://github.com/MainVirtualizer/CM3D2Editor/issues</a><br/><br/>${history}",
 	},
 
 	setting: {
@@ -194,6 +197,7 @@ var i18n = {
 		ytgc003: "我已安装夜咖等级技能包 Vol.3",
 		yandere: "我已安装病娇性格扩展包",
 		dkg_winter: "我已安装电气改2015冬扩展包",
+		dkg_winter_panties: "我已安装电气改2015冬胖次扩展包",
 		plus: "我已安装增强扩展包",
 		ytgc004: "我已安装夜咖等级技能包 Vol.4",
 		ytgc005: "我已安装夜咖等级技能包 Vol.5",
@@ -226,7 +230,7 @@ var i18n = {
 	},
 
 	updateHistory: {
-		"1.7.0 alpha": ["支持姐系性格扩展包", "<small>由于作者尚未获得该DLC，新功能可能无法正常工作。若出现问题，请<a href=\"https://github.com/MainVirtualizer/CM3D2Editor/issues\">在此</a>报告。</small>"],
+		"1.7.0": ["CM3D2 1.30 测试通过", "支持姐系性格扩展包", "支持电气改2015冬胖次扩展包"],
 		"1.6.3": ["CM3D2 1.27 测试通过", "支持夜咖DLC Vol.5技能"],
 		"1.6.2": ["CM3D2 1.26 测试通过", "支持夜咖DLC Vol.4技能"],
 		"1.6.1": ["增加标记所有VIP事件为已完成的功能", "<small>这样你就能进行事件回放</small>"],

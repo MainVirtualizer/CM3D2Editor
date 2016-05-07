@@ -3,7 +3,7 @@
 var openedFileName;
 var bindings = {
 	showMaidUtil: false,
-	version: "1.7.0 alpha",
+	version: "1.7.0",
 	msgbox: {
 		title: '',
 		text: ''
@@ -367,6 +367,9 @@ var util = {
 		if (localStorage.dkg_winter === 'true') {
 			skillIndex.push(1290, 1300, 1310, 1320);
 		}
+		if (localStorage.dkg_winter_panties === 'true') {
+			skillIndex.push(1330);
+		}
 		if (localStorage.plus === 'true') {
 			for (var i = 1340; i <= 1510; i += 10) {
 				skillIndex.push(i);
@@ -487,23 +490,38 @@ function forEachKeys(obj, callback) {
 	}
 }
 
+function showChangeLog() {
+	var title = i18n.ui.updateNotice.replace('${version}', bindings.version);
+	var body = '';
+	forEachKeys(i18n.updateHistory, function(obj, key, value) {
+		body += key + '<br/>' + value.map(function(a) {
+			return '&emsp;&emsp;' + a + '<br/>';
+		}).join('');
+	});
+	showMsgbox(
+		title,
+		i18n.ui.updateHistoryTemplate.replace('${body}', body)
+	);
+}
+
 function checkVersion() {
 	if (localStorage.version !== bindings.version) {
 		localStorage.version = bindings.version;
-		(function() {
-			var title = i18n.ui.updateNotice.replace('${version}', bindings.version);
-			var body = '';
-			forEachKeys(i18n.updateHistory, function(obj, key, value) {
-				body += key + '<br/>' + value.map(function(a) {
-					return '&emsp;&emsp;' + a + '<br/>';
-				}).join('');
-			});
-			showMsgbox(
-				i18n.ui.updateNotice.replace('${version}', bindings.version),
-				i18n.ui.updateHistoryTemplate.replace('${body}', body)
-			);
-		})();
+		showChangeLog();
 	}
+}
+
+function showAbout() {
+	var body = '';
+	forEachKeys(i18n.updateHistory, function(obj, key, value) {
+		body += key + '<br/>' + value.map(function(a) {
+			return '&emsp;&emsp;' + a + '<br/>';
+		}).join('');
+	});
+	showMsgbox(
+		i18n.ui.aboutTitle,
+		i18n.ui.aboutTemplate.replace('${history}', body)
+	);
 }
 
 function include(file, callback) {
