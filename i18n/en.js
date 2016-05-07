@@ -226,6 +226,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.7.0 alpha": ["One-chan Personality Pack Supported", "<small>As the author did not get the DLC yet, this might not work as exepcted. Report issues <a href=\"https://github.com/MainVirtualizer/CM3D2Editor/issues\">here</a>.</small>"],
 		"1.6.3": ["CM3D2 1.27 Tested", "Yotogi Skills Vol.5 Supported"],
 		"1.6.2": ["CM3D2 1.26 Tested", "Yotogi Skills Vol.4 Supported"],
 		"1.6.1": ["Utility Added: Mark All VIP Events As Finished", "<small>So you can replay the event.</small>"],

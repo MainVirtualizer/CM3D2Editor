@@ -226,6 +226,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.7.0 alpha": ["支持姐系性格扩展包", "<small>由于作者尚未获得该DLC，新功能可能无法正常工作。若出现问题，请<a href=\"https://github.com/MainVirtualizer/CM3D2Editor/issues\">在此</a>报告。</small>"],
 		"1.6.3": ["CM3D2 1.27 测试通过", "支持夜咖DLC Vol.5技能"],
 		"1.6.2": ["CM3D2 1.26 测试通过", "支持夜咖DLC Vol.4技能"],
 		"1.6.1": ["增加标记所有VIP事件为已完成的功能", "<small>这样你就能进行事件回放</small>"],
