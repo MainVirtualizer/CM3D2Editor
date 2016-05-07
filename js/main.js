@@ -3,7 +3,7 @@
 var openedFileName;
 var bindings = {
 	showMaidUtil: false,
-	version: "1.6.3",
+	version: "1.7.0 alpha",
 	msgbox: {
 		title: '',
 		text: ''
@@ -221,6 +221,7 @@ rivets.adapters['/'] = {
 		if (arrays) arrays.forEach(function(i) {
 			i();
 		});
+		$('#personality').material_select();
 	}
 }
 

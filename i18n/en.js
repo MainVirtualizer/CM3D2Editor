@@ -93,6 +93,7 @@ var i18n = {
 			p_cool: "Cool",
 			p_proud: "Tsundere",
 			p_yandere: "Yandere",
+			p_onnechan: "Onee-chan",
 
 			initSeikenken: "Initial Sex Experience",
 			seikenken: "Sex Experience",
@@ -196,6 +197,7 @@ var i18n = {
 		plus: "I have installed Plus Pack",
 		ytgc004: "I have installed Yotogi Class Skills Vol.4",
 		ytgc005: "I have installed Yotogi Class Skills Vol.5",
+		oneechan: "I have installed Onee-chan Personality Pack",
 	},
 
 	util: {

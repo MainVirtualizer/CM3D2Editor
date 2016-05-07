@@ -93,6 +93,7 @@ var i18n = {
 			p_cool: "冷酷",
 			p_proud: "傲娇",
 			p_yandere: "病骄",
+			p_onnechan: "姐系",
 
 			initSeikenken: "初始性经验",
 			seikenken: "性经验",
@@ -196,6 +197,7 @@ var i18n = {
 		plus: "我已安装增强扩展包",
 		ytgc004: "我已安装夜咖等级技能包 Vol.4",
 		ytgc005: "我已安装夜咖等级技能包 Vol.5",
+		oneechan: "我已安装姐系性格技能包",
 	},
 
 	util: {
