@@ -4752,9 +4752,9 @@ small {
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: hidden;
-  height: 48px;
+  /*height: 48px;*/
   background-color: #fff;
   margin: 0 auto;
   width: 100%;
