@@ -204,6 +204,7 @@ var i18n = {
 		oneechan: "I have installed Onee-chan Personality Pack",
 		ytgc006: "I have installed Yotogi Class Skills Vol.6",
 		ytgc007: "I have installed Yotogi Class Skills Vol.7",
+		plus2: "I have installed Plus Pack ACT.2",
 	},
 
 	util: {
@@ -232,6 +233,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.7.3": ["CM3D2 1.33 Tested", "Plus Pack ACT.2 Supported"],
 		"1.7.2": ["CM3D2 1.32 Tested", "Yotogi Skills Vol.7 Supported"],
 		"1.7.1": ["CM3D2 1.31 Tested", "Yotogi Skills Vol.6 Supported"],
 		"1.7.0": ["CM3D2 1.30 Tested", "One-chan Personality Pack Supported", "Denkigai 2015 Winter Panties Supported"],
