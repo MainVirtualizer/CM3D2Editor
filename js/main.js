@@ -3,7 +3,7 @@
 var openedFileName;
 var bindings = {
 	showMaidUtil: false,
-	version: "1.7.3",
+	version: "1.8.0",
 	msgbox: {
 		title: '',
 		text: ''
@@ -342,6 +342,7 @@ var util = {
 		if (localStorage.ytgc006 === "true") classes.push(17);
 		if (localStorage.ytgc007 === "true") classes.push(18);
 		if (localStorage.plus2 === "true") classes.push(19, 20, 21, 22);
+		if (localStorage.dkg_summer === "true") classes.push(23);
 		for (var i = 0; i < classes.length; i++) {
 			var idx = classes[i];
 			data[idx].have = true;
@@ -405,6 +406,9 @@ var util = {
 			for (var i = 1880; i <= 2260; i += 10) {
 				skillIndex.push(i);
 			}
+		}
+		if (localStorage.dkg_summer === "true") {
+			skillIndex.push(2265, 2270, 2280);
 		}
 		for (var i = 0; i < skillIndex.length; i++) {
 			var idx = skillIndex[i];
@@ -480,9 +484,14 @@ var util = {
 		Materialize.toast(i18n.util.removeModItemsFinished.replace(/\$\{count\}/g, count), 4000);
 	},
 	finishAllVip: function() {
-		forEachKeys(bindings.save.chrMgr.playerParam.nightWorksStateDic, function(prop, key, value) {
-			value.finish = true;
-		});
+		for (var i = 101; i <= 1000; i++) {
+			bindings.save.chrMgr.playerParam.nightWorksStateDic[i] = {
+				calledMaidGuid: "",
+				finish: true,
+				workId: i
+			};
+		}
+
 		Materialize.toast(i18n.util.finishAllVipDone, 4000);
 	}
 };
