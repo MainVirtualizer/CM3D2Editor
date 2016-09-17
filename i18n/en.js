@@ -206,6 +206,7 @@ var i18n = {
 		ytgc007: "I have installed Yotogi Class Skills Vol.7",
 		plus2: "I have installed Plus Pack ACT.2",
 		dkg_summer: "I have installed Denkigai 2016 Summer",
+		ytgc008: "I have installed Yotogi Class Skills Vol.8",
 	},
 
 	util: {
@@ -234,6 +235,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.8.2": ["Yotogi Skills Vol.8 Supported"],
 		"1.8.1": ["Fix All Trophies Feature <small>Credit: kanonmelodis</small>"],
 		"1.8.0": ["CM3D2 1.36 Tested", "Denkigai 2016 Summer Supported", "Fix VIP Replay Enable Feature"],
 		"1.7.3": ["CM3D2 1.33 Tested", "Plus Pack ACT.2 Supported"],
