@@ -94,6 +94,7 @@ var i18n = {
 			p_proud: "傲娇",
 			p_yandere: "病骄",
 			p_onnechan: "姐系",
+			p_bokukko: "仆娘",
 
 			initSeikenken: "初始性经验",
 			seikenken: "性经验",
@@ -207,6 +208,8 @@ var i18n = {
 		plus2: "我已安装增强扩展包第二弹",
 		dkg_summer: "我已安装电气改2016夏扩展包",
 		ytgc008: "我已安装夜咖等级技能包 Vol.8",
+		ytgc009: "我已安装夜咖等级技能包 Vol.9",
+		bokukko: "我已安装仆娘性格技能包",
 	},
 
 	util: {
@@ -235,6 +238,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.8.3": ["支持夜咖DLC Vol.9技能", "支持仆娘性格扩展包"],
 		"1.8.2": ["支持夜咖DLC Vol.8技能"],
 		"1.8.1": ["修正奖杯解锁功能 <small>感谢: kanonmelodis</small>"],
 		"1.8.0": ["CM3D2 1.36 测试通过", "支持电气改2016夏扩展包", "修正VIP回放启用的功能"],

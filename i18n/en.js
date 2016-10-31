@@ -94,6 +94,7 @@ var i18n = {
 			p_proud: "Tsundere",
 			p_yandere: "Yandere",
 			p_onnechan: "Onee-chan",
+			p_bokukko: "Bokukko",
 
 			initSeikenken: "Initial Sex Experience",
 			seikenken: "Sex Experience",
@@ -207,6 +208,8 @@ var i18n = {
 		plus2: "I have installed Plus Pack ACT.2",
 		dkg_summer: "I have installed Denkigai 2016 Summer",
 		ytgc008: "I have installed Yotogi Class Skills Vol.8",
+		ytgc009: "I have installed Yotogi Class Skills Vol.9",
+		bokukko: "I have installed Bokukko Personality Pack",
 	},
 
 	util: {
@@ -235,6 +238,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.8.3": ["Yotogo Skills Vol.9 Supported", "Bokukko Personality Pack Supported"],
 		"1.8.2": ["Yotogi Skills Vol.8 Supported"],
 		"1.8.1": ["Fix All Trophies Feature <small>Credit: kanonmelodis</small>"],
 		"1.8.0": ["CM3D2 1.36 Tested", "Denkigai 2016 Summer Supported", "Fix VIP Replay Enable Feature"],

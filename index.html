@@ -310,6 +310,14 @@
 				<input type="checkbox" id="setting-ytgc008" bind-checked="/ytgc008"/>
 				<label for="setting-ytgc008" i18n-text="setting.ytgc008"></label>
 			</div>
+			<div class="input-field">
+				<input type="checkbox" id="setting-ytgc009" bind-checked="/ytgc009"/>
+				<label for="setting-ytgc009" i18n-text="setting.ytgc009"></label>
+			</div>
+			<div class="input-field">
+				<input type="checkbox" id="setting-bokukko" bind-checked="/bokukko"/>
+				<label for="setting-bokukko" i18n-text="setting.bokukko"></label>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a class="modal-action modal-close btn-flat" i18n-text="ui.close"></a>
@@ -457,6 +465,7 @@
 							<option value="2">[game.maid.p_proud]</option>
 							<option value="3" bind-if="/yandere">[game.maid.p_yandere]</option>
 							<option value="4" bind-if="/oneechan">[game.maid.p_onnechan]</option>
+							<option value="5" bind-if="/bokukko">[game.maid.p_bokukko]</option>
 						</select>
 						<label>[game.maid.personality]</label>
 					</div>
