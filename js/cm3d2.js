@@ -191,7 +191,7 @@ Uint8Array.fromBase64 = function(input) {
 	}
 
 	function checkVersion(version) {
-		if (version > 139 || version < 101) {
+		if (version > 145 || version < 101) {
 			if (suppressVersion === undefined) {
 				if (exports.confirm) {
 					suppressVersion = exports.confirm('Unsupported version. Continue?');

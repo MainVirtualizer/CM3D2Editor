@@ -3,7 +3,7 @@
 var openedFileName;
 var bindings = {
 	showMaidUtil: false,
-	version: "1.8.3",
+	version: "1.8.4",
 	msgbox: {
 		title: '',
 		text: ''
@@ -351,6 +351,9 @@ var util = {
 		if (localStorage.dkg_summer === "true") classes.push(23);
 		if (localStorage.ytgc008 === "true") classes.push(24);
 		if (localStorage.ytgc009 === "true") classes.push(25);
+		if (localStorage.ytgc010 === "true") classes.push(26);
+		if (localStorage.dkg_winter2016 === "true") classes.push(27);
+		if (localStorage.plus3 === "true") classes.push(28, 29);
 		for (var i = 0; i < classes.length; i++) {
 			var idx = classes[i];
 			data[idx].have = true;
@@ -398,7 +401,7 @@ var util = {
 			}
 		}
 		if (localStorage.oneechan === 'true') {
-			skillIndex.push(1690, 1700);
+			skillIndex.push(1690, 1700, 1780);
 		}
 		if (localStorage.ytgc006 === 'true') {
 			for (var i = 1710; i <= 1770; i += 10) {
@@ -425,6 +428,22 @@ var util = {
 		}
 		if (localStorage.ytgc009 === "true") {
 			for (var i = 2600; i <= 2680; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.ytgc010 === "true") {
+			skillIndex.push(2700);
+			for (var i = 2800; i <= 2870; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.dkg_winter2016 === "true") {
+			for (var i = 3200; i <= 3240; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.plus3 === "true") {
+			for (var i = 2900; i <= 3180; i += 10) {
 				skillIndex.push(i);
 			}
 		}
@@ -502,7 +521,7 @@ var util = {
 		Materialize.toast(i18n.util.removeModItemsFinished.replace(/\$\{count\}/g, count), 4000);
 	},
 	finishAllVip: function() {
-		for (var i = 101; i <= 1000; i++) {
+		for (var i = 101; i <= 2000; i++) {
 			bindings.save.chrMgr.playerParam.nightWorksStateDic[i] = {
 				calledMaidGuid: "",
 				finish: true,

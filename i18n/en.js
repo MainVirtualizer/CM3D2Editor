@@ -210,6 +210,9 @@ var i18n = {
 		ytgc008: "I have installed Yotogi Class Skills Vol.8",
 		ytgc009: "I have installed Yotogi Class Skills Vol.9",
 		bokukko: "I have installed Bokukko Personality Pack",
+		ytgc010: "I have installed Yotogi Class Skills Vol.10",
+		dkg_winter2016: "I have installed Denkigai 2016 Winter",
+		plus3: "I have installed Plus Pack ACT.3",
 	},
 
 	util: {
@@ -238,6 +241,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.8.4": ["Yotogo Skills Vol.10 Supported", "Denkigai 2016 Winter Supported", "Plus Pack ACT.3 Supported"],
 		"1.8.3": ["Yotogo Skills Vol.9 Supported", "Bokukko Personality Pack Supported"],
 		"1.8.2": ["Yotogi Skills Vol.8 Supported"],
 		"1.8.1": ["Fix All Trophies Feature <small>Credit: kanonmelodis</small>"],
