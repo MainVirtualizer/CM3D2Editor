@@ -191,7 +191,7 @@ Uint8Array.fromBase64 = function(input) {
 	}
 
 	function checkVersion(version) {
-		if (version > 145 || version < 101) {
+		if (version > 146 || version < 101) {
 			if (suppressVersion === undefined) {
 				if (exports.confirm) {
 					suppressVersion = exports.confirm('Unsupported version. Continue?');
@@ -209,6 +209,14 @@ Uint8Array.fromBase64 = function(input) {
 			g: reader.readSingle(),
 			b: reader.readSingle(),
 			a: reader.readSingle()
+		};
+	}
+	
+	function parseXYZ(reader) {
+		return {
+			x: reader.readSingle(),
+			y: reader.readSingle(),
+			z: reader.readSingle()
 		};
 	}
 
@@ -600,6 +608,9 @@ Uint8Array.fromBase64 = function(input) {
 				stockMan: [],
 				stockMaid: []
 			},
+			dskMgr: {
+				deskDecoration: []
+			},
 			script: null
 		}
 
@@ -641,6 +652,25 @@ Uint8Array.fromBase64 = function(input) {
 			fadeWait: reader.readBoolean(),
 			enabled: reader.readBoolean()
 		};
+		
+		if (version >= 146) {
+			if (reader.readString() !== 'CM3D2_DeskCustomize') {
+				throw new Error('Expected CM3D2_DeskCustomize');
+			}
+			checkVersion(reader.readInt32());
+
+			for (var i = reader.readInt32(); i > 0; i--) {
+				ret.dskMgr.deskDecoration.push({
+					id: reader.readSingle(),
+					index: reader.readSingle(),
+					visible: reader.readBoolean(),
+					monthOnly: reader.readBoolean(),
+					pos: parseXYZ(reader),
+					rot: parseXYZ(reader),
+					sca: parseXYZ(reader)
+				});
+			}
+		}
 
 		reader.readEOF();
 
@@ -652,6 +682,12 @@ Uint8Array.fromBase64 = function(input) {
 		writer.writeSingle(data.g);
 		writer.writeSingle(data.b);
 		writer.writeSingle(data.a);
+	}
+	
+	function writeXYZ(writer, data) {
+		writer.writeSingle(data.x);
+		writer.writeSingle(data.y);
+		writer.writeSingle(data.z);
 	}
 
 	function writeExperience(writer, data) {
@@ -1012,6 +1048,22 @@ Uint8Array.fromBase64 = function(input) {
 		writeBinaryData(writer, data.script.kag);
 		writer.writeBoolean(data.script.fadeWait);
 		writer.writeBoolean(data.script.enabled);
+		
+		writer.writeString('CM3D2_DeskCustomize');
+		writer.writeInt32(data.version);
+		
+		if (data.version >= 146) {
+			writer.writeInt32(data.dskMgr.deskDecoration.length);
+			for (var i = 0; i < data.dskMgr.deskDecoration.length; i++) {
+				writer.writeSingle(data.dskMgr.deskDecoration[i].id);
+				writer.writeSingle(data.dskMgr.deskDecoration[i].index);
+				writer.writeBoolean(data.dskMgr.deskDecoration[i].visible);
+				writer.writeBoolean(data.dskMgr.deskDecoration[i].monthOnly);
+				writeXYZ(writer, data.dskMgr.deskDecoration[i].pos);
+				writeXYZ(writer, data.dskMgr.deskDecoration[i].rot);
+				writeXYZ(writer, data.dskMgr.deskDecoration[i].sca);
+			}
+		}
 
 		return writer.getBuffer();
 	}
