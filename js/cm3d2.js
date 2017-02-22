@@ -1049,10 +1049,10 @@ Uint8Array.fromBase64 = function(input) {
 		writer.writeBoolean(data.script.fadeWait);
 		writer.writeBoolean(data.script.enabled);
 		
-		writer.writeString('CM3D2_DeskCustomize');
-		writer.writeInt32(data.version);
-		
 		if (data.version >= 146) {
+			writer.writeString('CM3D2_DeskCustomize');
+			writer.writeInt32(data.version);
+		
 			writer.writeInt32(data.dskMgr.deskDecoration.length);
 			for (var i = 0; i < data.dskMgr.deskDecoration.length; i++) {
 				writer.writeSingle(data.dskMgr.deskDecoration[i].id);
