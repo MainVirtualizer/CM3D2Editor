@@ -3,7 +3,7 @@
 var openedFileName;
 var bindings = {
 	showMaidUtil: false,
-	version: "1.8.4",
+	version: "1.8.5",
 	msgbox: {
 		title: '',
 		text: ''
@@ -354,6 +354,9 @@ var util = {
 		if (localStorage.ytgc010 === "true") classes.push(26);
 		if (localStorage.dkg_winter2016 === "true") classes.push(27);
 		if (localStorage.plus3 === "true") classes.push(28, 29);
+		if (localStorage.ytgc011 === "true") classes.push(30);
+		if (localStorage.liveEventDLC === "true") classes.push(31);
+		if (localStorage.ytgc012 === "true") classes.push(32);
 		for (var i = 0; i < classes.length; i++) {
 			var idx = classes[i];
 			data[idx].have = true;
@@ -444,6 +447,21 @@ var util = {
 		}
 		if (localStorage.plus3 === "true") {
 			for (var i = 2900; i <= 3180; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.ytgc011 === "true") {
+			for (var i = 3300; i <= 3360; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.liveEventDLC === "true") {
+			for (var i = 3400; i <= 3430; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.ytgc012 === "true") {
+			for (var i = 3500; i <= 3360; i += 10) {
 				skillIndex.push(i);
 			}
 		}
