@@ -461,7 +461,7 @@ var util = {
 			}
 		}
 		if (localStorage.ytgc012 === "true") {
-			for (var i = 3500; i <= 3360; i += 10) {
+			for (var i = 3500; i <= 3560; i += 10) {
 				skillIndex.push(i);
 			}
 		}
