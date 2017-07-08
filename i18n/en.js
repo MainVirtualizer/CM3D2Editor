@@ -95,6 +95,7 @@ var i18n = {
 			p_yandere: "Yandere",
 			p_onnechan: "Onee-chan",
 			p_bokukko: "Bokukko",
+			p_sadist: "Sadist",
 
 			initSeikenken: "Initial Sex Experience",
 			seikenken: "Sex Experience",
@@ -216,6 +217,8 @@ var i18n = {
 		ytgc011: "I have installed Yotogi Class Skills Vol.11",
 		liveEventDLC: "I have installed 2017 March Event Plugin",
 		ytgc012: "I have installed Yotogi Class Skills Vol.12",
+		sadist: "I have installed Sadist Personality Pack",
+		ytgc013: "I have installed Yotogi Class Skills Vol.13",
 	},
 
 	util: {
@@ -244,6 +247,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.8.6": ["CM3D2 1.51 Tested", "Sadist Personality Pack Supported", "Yotogo Skills Vol.13 Supported"],
 		"1.8.5": ["CM3D2 1.47 Supported <small>Credit: Zazck</small>", "Yotogo Skills Vol.11 Supported", "Yotogi Skills Vol.12 Supported"],
 		"1.8.4": ["Yotogo Skills Vol.10 Supported", "Denkigai 2016 Winter Supported", "Plus Pack ACT.3 Supported"],
 		"1.8.3": ["Yotogo Skills Vol.9 Supported", "Bokukko Personality Pack Supported"],

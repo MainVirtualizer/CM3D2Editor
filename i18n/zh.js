@@ -95,6 +95,7 @@ var i18n = {
 			p_yandere: "病骄",
 			p_onnechan: "姐系",
 			p_bokukko: "仆娘",
+			p_sadist: "抖S",
 
 			initSeikenken: "初始性经验",
 			seikenken: "性经验",
@@ -216,6 +217,8 @@ var i18n = {
 		ytgc011: "我已安装夜咖等级技能包 Vol.11",
 		liveEventDLC: "我已安装2017三月活动插件",
 		ytgc012: "我已安装夜咖等级技能包 Vol.12",
+		sadist: "我已安装抖S性格技能包",
+		ytgc013: "我已安装夜咖等级技能包 Vol.13",
 	},
 
 	util: {
@@ -244,6 +247,7 @@ var i18n = {
 	},
 
 	updateHistory: {
+		"1.8.6": ["CM3D2 1.51 测试通过", "支持抖S性格扩展包", "支持夜咖DLC Vol.13技能"],
 		"1.8.5": ["支持 CM3D2 1.47 <small>感谢: Zazck</small>", "支持夜咖DLC Vol.11技能", "支持夜咖DLC Vol.12技能"],
 		"1.8.4": ["支持夜咖DLC Vol.10技能", "支持电气改2016冬扩展包", "支持增强扩展包第三弹"],
 		"1.8.3": ["支持夜咖DLC Vol.9技能", "支持仆娘性格扩展包"],
