@@ -358,6 +358,11 @@ var util = {
 		if (localStorage.liveEventDLC === "true") classes.push(31);
 		if (localStorage.ytgc012 === "true") classes.push(32);
 		if (localStorage.ytgc013 === "true") classes.push(33);
+		if (localStorage.ytgc014 === "true") classes.push(34);
+		if (localStorage.dkg_summer2017 === "true") classes.push(35);
+		if (localStorage.ytgc015 === "true") classes.push(36);
+		if (localStorage.bugbug === "true") classes.push(37);
+		if (localStorage.ytgc016 === "true") classes.push(38);
 		for (var i = 0; i < classes.length; i++) {
 			var idx = classes[i];
 			data[idx].have = true;
@@ -468,6 +473,27 @@ var util = {
 		}
 		if (localStorage.ytgc013 === "true") {
 			for (var i = 3700; i <= 3760; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.ytgc014 === "true") {
+			for (var i = 3800; i <= 3870; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.dkg_summer2017 === "true") {
+			skillIndex.push(3900, 3910, 3920);
+		}
+		if (localStorage.ytgc015 === "true") {
+			for (var i = 4000; i <= 4070; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.bugbug === "true") {
+			skillIndex.push(4200, 4210, 4220, 4230);
+		}
+		if (localStorage.ytgc016 === "true") {
+			for (var i = 4300; i <= 4370; i += 10) {
 				skillIndex.push(i);
 			}
 		}

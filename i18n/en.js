@@ -219,6 +219,11 @@ var i18n = {
 		ytgc012: "I have installed Yotogi Class Skills Vol.12",
 		sadist: "I have installed Sadist Personality Pack",
 		ytgc013: "I have installed Yotogi Class Skills Vol.13",
+		ytgc014: "I have installed Yotogi Class Skills Vol.14",
+		dkg_summer2017: "I have installed Denkigai 2017 Summer",
+		ytgc015: "I have installed Yotogi Class Skills Vol.15",
+		bugbug: "I have install BugBug Plugin",
+		ytgc016: "I have installed Yotogi Class Skills Vol.16",
 	},
 
 	util: {
