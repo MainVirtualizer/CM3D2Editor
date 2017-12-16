@@ -189,7 +189,7 @@ var i18n = {
 		updateHistoryTemplate: "Update History<br/>${body}",
 
 		aboutTitle: "About",
-		aboutTemplate: "한글화: <a href=\"http://pkquell.pe.kr/\">http://pkquell.pe.kr/</a><br/><br/>Author: MainVirtualizer<br/>GitHub Repo: <a href=\"https://github.com/MainVirtualizer/CM3D2Editor\">https://github.com/MainVirtualizer/CM3D2Editor</a><br/>Report Issues: <a href=\"https://github.com/MainVirtualizer/CM3D2Editor/issues\">https://github.com/MainVirtualizer/CM3D2Editor/issues</a><br/><br/>${history}",
+		aboutTemplate: "한글화: <a href=\"https://github.com/pkquell/CM3D2Editor\">https://github.com/pkquell/CM3D2Editor</a><br/><br/>Author: MainVirtualizer<br/>GitHub Repo: <a href=\"https://github.com/MainVirtualizer/CM3D2Editor\">https://github.com/MainVirtualizer/CM3D2Editor</a><br/>Report Issues: <a href=\"https://github.com/MainVirtualizer/CM3D2Editor/issues\">https://github.com/MainVirtualizer/CM3D2Editor/issues</a><br/><br/>${history}",
 	},
 
 	setting: {
