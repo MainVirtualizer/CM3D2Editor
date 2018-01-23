@@ -363,6 +363,9 @@ var util = {
 		if (localStorage.ytgc015 === "true") classes.push(36);
 		if (localStorage.bugbug === "true") classes.push(37);
 		if (localStorage.ytgc016 === "true") classes.push(38);
+		if (localStorage.ytgc017 === "true") classes.push(39);
+		if (localStorage.ytgc018 === "true") classes.push(40);
+		if (localStorage.dkg_winter2017 === "true") classes.push(41);
 		for (var i = 0; i < classes.length; i++) {
 			var idx = classes[i];
 			data[idx].have = true;
@@ -496,6 +499,24 @@ var util = {
 			for (var i = 4300; i <= 4370; i += 10) {
 				skillIndex.push(i);
 			}
+		}
+		if (localStorage.ytgc017 === "true") {
+			for (var i = 4100; i <= 4160; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.ytgc017 === "true") {
+			for (var i = 4100; i <= 4160; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.ytgc018 === "true") {
+			for (var i = 4400; i <= 4460; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.dkg_winter2017 === "true") {
+			skillIndex.push(4500, 4510, 4520, 4600);
 		}
 		for (var i = 0; i < skillIndex.length; i++) {
 			var idx = skillIndex[i];
