@@ -225,6 +225,9 @@ var i18n = {
 		ytgc015: "I have installed Yotogi Class Skills Vol.15",
 		bugbug: "I have install BugBug Plugin",
 		ytgc016: "I have installed Yotogi Class Skills Vol.16",
+		ytgc017: "I have installed Yotogi Class Skills Vol.17",
+		ytgc018: "I have installed Yotogi Class Skills Vol.18",
+		dkg_winter2017: "I have installed Denkigai 2017 Winter",
 	},
 
 	util: {
