@@ -363,6 +363,9 @@ var util = {
 		if (localStorage.ytgc015 === "true") classes.push(36);
 		if (localStorage.bugbug === "true") classes.push(37);
 		if (localStorage.ytgc016 === "true") classes.push(38);
+		if (localStorage.ytgc017 === "true") classes.push(39);
+		if (localStorage.ytgc018 === "true") classes.push(40);
+		if (localStorage.dkg_winter2017 === "true") classes.push(41);
 		for (var i = 0; i < classes.length; i++) {
 			var idx = classes[i];
 			data[idx].have = true;
