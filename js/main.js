@@ -500,6 +500,24 @@ var util = {
 				skillIndex.push(i);
 			}
 		}
+		if (localStorage.ytgc017 === "true") {
+			for (var i = 4100; i <= 4160; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.ytgc017 === "true") {
+			for (var i = 4100; i <= 4160; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.ytgc018 === "true") {
+			for (var i = 4400; i <= 4460; i += 10) {
+				skillIndex.push(i);
+			}
+		}
+		if (localStorage.dkg_winter2017 === "true") {
+			skillIndex.push(4500, 4510, 4520, 4600);
+		}
 		for (var i = 0; i < skillIndex.length; i++) {
 			var idx = skillIndex[i];
 			if (data[idx]) {
